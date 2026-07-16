@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import BrandMark from '../../components/BrandMark.astro';
 import { site } from '../../lib/site';
 
 const brands = (await getCollection('brands')).sort((a, b) => a.data.order - b.data.order);
@@ -24,9 +25,10 @@ const brands = (await getCollection('brands')).sort((a, b) => a.data.order - b.d
       {brands.map((brand) => (
         <a
           href={`/brands/${brand.id}/`}
-          class="block rounded-lg border border-slate-200 p-6 transition hover:border-blue-300 hover:shadow-md"
+          class="group block rounded-lg border border-slate-200 p-6 transition hover:border-blue-300 hover:shadow-md"
         >
-          <h2 class="text-lg font-semibold text-slate-900">{brand.data.name}</h2>
+          <BrandMark name={brand.data.name} class="px-4 py-2 text-sm" />
+          <h2 class="mt-4 text-lg font-semibold text-slate-900">{brand.data.name}</h2>
           <span class="mt-4 inline-block text-sm font-semibold text-blue-700">View {brand.data.name} repairs &rarr;</span>
         </a>
       ))}

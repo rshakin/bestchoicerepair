@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import ApplianceIcon from '../components/ApplianceIcon.astro';
+import BrandMark from '../components/BrandMark.astro';
 import { site } from '../lib/site';
 
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
@@ -112,11 +113,8 @@ const featuredProblems = featuredProblemIds
     </p>
     <div class="mt-6 flex flex-wrap gap-3">
       {site.brandsShort.map((brand) => (
-        <a
-          href={`/brands/${brand.toLowerCase()}/`}
-          class="rounded-md border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 hover:border-blue-300 hover:text-blue-700"
-        >
-          {brand}
+        <a href={`/brands/${brand.toLowerCase()}/`} class="group">
+          <BrandMark name={brand} />
         </a>
       ))}
     </div>
