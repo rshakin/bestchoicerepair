@@ -2,6 +2,7 @@
 name: Thermador
 metaDescription: Thermador appliance repair in Las Vegas. Ranges, refrigerators, and dishwashers. Premium appliance specialists, 90-day warranty.
 order: 7
+tier: Luxury & Built-In
 commonIssues:
   - Refrigerator column not cooling to set point
   - Range or cooktop igniter not sparking

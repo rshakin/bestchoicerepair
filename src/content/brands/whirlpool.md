@@ -2,6 +2,7 @@
 name: Whirlpool
 metaDescription: Whirlpool appliance repair in Las Vegas. Washers, dryers, refrigerators, and ovens. Same-day service, 90-day warranty.
 order: 3
+tier: Workhorse & Value
 commonIssues:
   - Washer stuck mid-cycle or won't drain
   - Dryer squealing or not tumbling

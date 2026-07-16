@@ -2,6 +2,7 @@
 name: Wolf
 metaDescription: Wolf range and oven repair in Las Vegas. Premium appliance specialists. Same-day service, 90-day warranty on parts & labor.
 order: 6
+tier: Luxury & Built-In
 commonIssues:
   - Range burner not igniting or clicking continuously
   - Oven not reaching or holding temperature

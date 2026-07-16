@@ -2,6 +2,7 @@
 name: Sub-Zero
 metaDescription: Sub-Zero refrigerator repair in Las Vegas. Built-in and integrated refrigeration specialists. Same-day service, 90-day warranty.
 order: 8
+tier: Luxury & Built-In
 commonIssues:
   - Refrigerator or freezer not maintaining temperature
   - Compressor running constantly or short-cycling

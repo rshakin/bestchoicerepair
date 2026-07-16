@@ -6,32 +6,56 @@ import BrandMark from '../../components/BrandMark.astro';
 import { site } from '../../lib/site';
 
 const brands = (await getCollection('brands')).sort((a, b) => a.data.order - b.data.order);
+
+const tierOrder = ['Luxury & Built-In', 'Modern & Everyday', 'Workhorse & Value'] as const;
+const tierCopy: Record<(typeof tierOrder)[number], string> = {
+  'Luxury & Built-In': 'Premium and built-in kitchen brands found in Summerlin and Henderson\'s higher-end homes.',
+  'Modern & Everyday': 'Common brands in newer builds and remodeled kitchens across the valley.',
+  'Workhorse & Value': 'Reliable, widely-owned brands we service on nearly every route.',
+};
+const brandsByTier = tierOrder.map((tier) => ({
+  tier,
+  copy: tierCopy[tier],
+  brands: brands.filter((b) => b.data.tier === tier),
+}));
 ---
 
 <Layout
   title={`Brands We Repair | ${site.name}`}
-  description="Appliance repair for Samsung, GE, Whirlpool, Maytag, Bosch, Wolf, and Thermador in Las Vegas. Same-day service, 90-day warranty."
+  description="Appliance repair for Samsung, GE, Whirlpool, Maytag, Bosch, Wolf, Thermador, Sub-Zero, and Viking in Las Vegas. Same-day service, 90-day warranty."
 >
   <Breadcrumbs items={[{ name: 'Home', url: '/' }, { name: 'Brands', url: '/brands/' }]} />
 
   <section class="mx-auto max-w-6xl px-4 py-12">
     <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl">Brands We Repair</h1>
     <p class="mt-3 max-w-2xl text-slate-600">
-      From everyday brands to premium kitchen makers, our technicians are experienced across the full range of
-      appliance manufacturers found in Las Vegas homes.
+      We carry common parts for {brands.length} brands on every truck, from everyday names to premium built-in
+      kitchen makers found in Las Vegas homes.
     </p>
 
-    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {brands.map((brand) => (
-        <a
-          href={`/brands/${brand.id}/`}
-          class="group block rounded-lg border border-slate-200 p-6 transition hover:border-blue-300 hover:shadow-md"
-        >
-          <BrandMark name={brand.data.name} class="px-4 py-2 text-sm" />
-          <h2 class="mt-4 text-lg font-semibold text-slate-900">{brand.data.name}</h2>
-          <span class="mt-4 inline-block text-sm font-semibold text-blue-700">View {brand.data.name} repairs &rarr;</span>
-        </a>
-      ))}
-    </div>
+    {brandsByTier.map(({ tier, copy, brands: tierBrands }) => (
+      <div class="mt-12 first:mt-8">
+        <h2 class="text-xl font-bold text-slate-900">{tier}</h2>
+        <p class="mt-1 text-sm text-slate-600">{copy}</p>
+        <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {tierBrands.map((brand) => (
+            <a
+              href={`/brands/${brand.id}/`}
+              class="group block rounded-lg border border-slate-200 p-6 transition hover:border-blue-300 hover:shadow-md"
+            >
+              <BrandMark name={brand.data.name} class="px-4 py-2 text-sm" />
+              <h3 class="mt-4 text-lg font-semibold text-slate-900">{brand.data.name}</h3>
+              <span class="mt-4 inline-block text-sm font-semibold text-blue-700">View {brand.data.name} repairs &rarr;</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    ))}
+
+    <p class="mt-12 border-t border-slate-200 pt-6 text-xs text-slate-500">
+      {site.name} is an independent repair company and is not affiliated with, authorized, or sponsored by any of
+      the manufacturers listed above. We service these brands because our technicians carry the parts, tools, and
+      experience to repair them.
+    </p>
   </section>
 </Layout>

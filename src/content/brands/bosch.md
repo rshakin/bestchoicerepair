@@ -2,6 +2,7 @@
 name: Bosch
 metaDescription: Bosch appliance repair in Las Vegas. Dishwashers, refrigerators, and washers. Factory-trained approach, 90-day warranty.
 order: 5
+tier: Modern & Everyday
 commonIssues:
   - Dishwasher E15 leak sensor error
   - Dishwasher not drying dishes completely

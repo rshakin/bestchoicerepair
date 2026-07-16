@@ -2,6 +2,7 @@
 name: Viking
 metaDescription: Viking range and appliance repair in Las Vegas. Professional-style kitchen specialists. Same-day service, 90-day warranty.
 order: 9
+tier: Luxury & Built-In
 commonIssues:
   - Range burner not igniting or sparking intermittently
   - Oven temperature running hot or cold

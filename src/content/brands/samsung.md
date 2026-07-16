@@ -2,6 +2,7 @@
 name: Samsung
 metaDescription: Samsung appliance repair in Las Vegas. Refrigerators, washers, dryers, dishwashers, and ranges. Same-day service, 90-day warranty.
 order: 1
+tier: Modern & Everyday
 commonIssues:
   - Refrigerator ice maker freezing up or not making ice
   - Front-load washer OE / drain error codes

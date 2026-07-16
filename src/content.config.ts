@@ -20,6 +20,7 @@ const brands = defineCollection({
     name: z.string(),
     metaDescription: z.string(),
     order: z.number(),
+    tier: z.enum(['Luxury & Built-In', 'Modern & Everyday', 'Workhorse & Value']),
     commonIssues: z.array(z.string()),
   }),
 });

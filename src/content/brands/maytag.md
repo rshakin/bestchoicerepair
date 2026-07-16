@@ -2,6 +2,7 @@
 name: Maytag
 metaDescription: Maytag appliance repair in Las Vegas. Washers, dryers, and dishwashers. Same-day service, 90-day warranty on parts & labor.
 order: 4
+tier: Workhorse & Value
 commonIssues:
   - Washer leaking from the door boot or dispenser
   - Dryer taking multiple cycles to dry
