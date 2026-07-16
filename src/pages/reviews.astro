@@ -1,0 +1,44 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { site } from '../lib/site';
+
+// TODO: replace with real Google/Yelp business profile URLs once the owner
+// provides them, and add real customer testimonials below. Do not publish
+// fabricated reviews or star ratings — see src/lib/schema.ts note.
+const reviewLinks = [
+  { label: 'Leave us a Google review', href: '#' },
+  { label: 'Leave us a Yelp review', href: '#' },
+];
+---
+
+<Layout
+  title={`Reviews | ${site.name}`}
+  description="See what customers say about our appliance repair service in Las Vegas, or leave us a review on Google or Yelp."
+>
+  <Breadcrumbs items={[{ name: 'Home', url: '/' }, { name: 'Reviews', url: '/reviews/' }]} />
+
+  <section class="mx-auto max-w-3xl px-4 py-12">
+    <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl">Customer Reviews</h1>
+    <p class="mt-4 text-slate-600">
+      We're proud of the work we do for homeowners across the Las Vegas valley. Check out our latest reviews on
+      Google and Yelp, or let us know how we did after your repair.
+    </p>
+
+    <div class="mt-8 flex flex-wrap gap-4">
+      {reviewLinks.map((link) => (
+        <a href={link.href} class="rounded-md border border-slate-300 px-5 py-3 font-semibold text-slate-700 hover:border-blue-300 hover:text-blue-700">
+          {link.label}
+        </a>
+      ))}
+    </div>
+
+    <div class="mt-12 rounded-lg bg-slate-900 p-8 text-center">
+      <h2 class="text-xl font-semibold text-white">Just had a repair with us?</h2>
+      <p class="mt-2 text-slate-300">We'd appreciate a review — it helps other Las Vegas homeowners find us.</p>
+      <a href={site.phoneHref} class="mt-4 inline-block rounded-md bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-500">
+        Call {site.phoneDisplay}
+      </a>
+    </div>
+  </section>
+</Layout>

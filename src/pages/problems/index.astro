@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { site } from '../../lib/site';
+
+const problems = await getCollection('problems');
+
+const byAppliance = problems.reduce<Record<string, typeof problems>>((acc, problem) => {
+  const key = problem.data.appliance;
+  acc[key] = acc[key] ? [...acc[key], problem] : [problem];
+  return acc;
+}, {});
+---
+
+<Layout
+  title={`Common Appliance Problems We Fix | ${site.name}`}
+  description="Symptoms and causes for the most common washer, dryer, refrigerator, oven, dishwasher, microwave, and disposal problems in Las Vegas."
+>
+  <Breadcrumbs items={[{ name: 'Home', url: '/' }, { name: 'Problems', url: '/problems/' }]} />
+
+  <section class="mx-auto max-w-6xl px-4 py-12">
+    <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl">Common Appliance Problems</h1>
+    <p class="mt-3 max-w-2xl text-slate-600">
+      Not sure what's wrong? Find your symptom below to see likely causes and how we fix it.
+    </p>
+
+    {Object.entries(byAppliance).map(([appliance, items]) => (
+      <div class="mt-10">
+        <h2 class="text-lg font-semibold text-slate-900">{appliance}</h2>
+        <div class="mt-4 grid gap-4 sm:grid-cols-2">
+          {items.map((problem) => (
+            <a
+              href={`/problems/${problem.id}/`}
+              class="block rounded-lg border border-slate-200 p-5 transition hover:border-blue-300 hover:shadow-md"
+            >
+              <h3 class="font-semibold text-slate-900">{problem.data.title}</h3>
+              <span class="mt-2 inline-block text-sm font-semibold text-blue-700">See causes &rarr;</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    ))}
+  </section>
+</Layout>

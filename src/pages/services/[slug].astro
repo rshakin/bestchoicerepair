@@ -1,0 +1,92 @@
+---
+import { getCollection, getEntries, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { site } from '../../lib/site';
+import { serviceSchema, breadcrumbSchema } from '../../lib/schema';
+
+export async function getStaticPaths() {
+  const services = await getCollection('services');
+  return services.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const relatedProblems = entry.data.relatedProblems.length
+  ? await getEntries(entry.data.relatedProblems)
+  : [];
+const pageUrl = new URL(`/services/${entry.id}/`, Astro.site).toString();
+
+const breadcrumbItems = [
+  { name: 'Home', url: '/' },
+  { name: 'Services', url: '/services/' },
+  { name: entry.data.title, url: `/services/${entry.id}/` },
+];
+---
+
+<Layout
+  title={`${entry.data.title} in Las Vegas | ${site.name}`}
+  description={entry.data.metaDescription}
+  schema={[
+    serviceSchema({ name: entry.data.title, description: entry.data.metaDescription, url: pageUrl }),
+    breadcrumbSchema(breadcrumbItems.map((i) => ({ ...i, url: new URL(i.url, Astro.site).toString() }))),
+  ]}
+>
+  <Breadcrumbs items={breadcrumbItems} />
+
+  <article class="mx-auto max-w-3xl px-4 py-12">
+    <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl">{entry.data.title} in Las Vegas</h1>
+
+    <div class="mt-4 flex flex-wrap gap-3 text-sm">
+      <span class="rounded-full bg-blue-50 px-3 py-1 font-medium text-blue-700">{site.serviceCallFee} service call, waived with repair</span>
+      <span class="rounded-full bg-emerald-50 px-3 py-1 font-medium text-emerald-700">{site.warranty}</span>
+      <span class="rounded-full bg-slate-100 px-3 py-1 font-medium text-slate-700">Same-day service available</span>
+    </div>
+
+    <div class="prose prose-slate mt-8 max-w-none">
+      <Content />
+    </div>
+
+    <div class="mt-10">
+      <h2 class="text-xl font-semibold text-slate-900">Common {entry.data.title.toLowerCase()} issues we fix</h2>
+      <ul class="mt-4 grid gap-2 sm:grid-cols-2">
+        {entry.data.commonIssues.map((issue) => (
+          <li class="flex items-start gap-2 text-sm text-slate-700">
+            <span class="mt-1 text-blue-600">&#10003;</span>
+            {issue}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    {relatedProblems.length > 0 && (
+      <div class="mt-10">
+        <h2 class="text-xl font-semibold text-slate-900">Related problems</h2>
+        <ul class="mt-4 space-y-2">
+          {relatedProblems.map((problem) => (
+            <li>
+              <a href={`/problems/${problem.id}/`} class="text-blue-700 hover:underline">{problem.data.title}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    <div class="mt-10">
+      <h2 class="text-xl font-semibold text-slate-900">Brands we service</h2>
+      <p class="mt-3 flex flex-wrap gap-2 text-sm text-slate-600">
+        {site.brandsShort.map((brand) => (
+          <a href={`/brands/${brand.toLowerCase()}/`} class="rounded-md border border-slate-200 px-3 py-1 hover:border-blue-300">{brand}</a>
+        ))}
+      </p>
+    </div>
+
+    <div class="mt-12 rounded-lg bg-slate-900 p-8 text-center">
+      <h2 class="text-xl font-semibold text-white">Need {entry.data.title.toLowerCase()} today?</h2>
+      <p class="mt-2 text-slate-300">Call now for same-day service across Las Vegas, Henderson, and Summerlin.</p>
+      <a href={site.phoneHref} class="mt-4 inline-block rounded-md bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-500">
+        Call {site.phoneDisplay}
+      </a>
+    </div>
+  </article>
+</Layout>

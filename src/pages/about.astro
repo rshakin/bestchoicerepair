@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { site } from '../lib/site';
+---
+
+<Layout
+  title={`About Us | ${site.name}`}
+  description="Family-owned appliance repair company serving the Las Vegas valley. Licensed & insured, 90-day warranty on parts and labor."
+>
+  <Breadcrumbs items={[{ name: 'Home', url: '/' }, { name: 'About', url: '/about/' }]} />
+
+  <article class="mx-auto max-w-3xl px-4 py-12">
+    <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl">About {site.name}</h1>
+
+    <div class="prose prose-slate mt-8 max-w-none">
+      <p>
+        {site.name} is a family-owned appliance repair company serving the Las Vegas valley. Our approach is
+        simple: {site.tagline.toLowerCase()} We show up on time, diagnose the actual problem before recommending
+        a repair, and stand behind our work with a {site.warranty.toLowerCase()}.
+      </p>
+      <p>
+        We repair washers, dryers, refrigerators, dishwashers, ovens, ranges, microwaves, and garbage disposals
+        from everyday brands to premium kitchen makers, across {site.serviceAreaCities.join(', ')}, and the
+        surrounding areas.
+      </p>
+      <p>
+        Every visit includes a {site.serviceCallFee} diagnostic fee, waived when you move forward with the repair.
+        We also offer a $10 discount for mentioning our website, along with military and veteran discounts.
+      </p>
+      <!-- TODO: add license number, BBB accreditation, years in business, and founder/team info once supplied by the business owner. -->
+    </div>
+
+    <div class="mt-12 rounded-lg bg-slate-900 p-8 text-center">
+      <h2 class="text-xl font-semibold text-white">Have a repair to schedule?</h2>
+      <a href={site.phoneHref} class="mt-4 inline-block rounded-md bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-500">
+        Call {site.phoneDisplay}
+      </a>
+    </div>
+  </article>
+</Layout>
