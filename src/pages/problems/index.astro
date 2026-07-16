@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ApplianceIcon from '../../components/ApplianceIcon.astro';
 import { site } from '../../lib/site';
 
 const problems = await getCollection('problems');
@@ -27,7 +28,10 @@ const byAppliance = problems.reduce<Record<string, typeof problems>>((acc, probl
 
     {Object.entries(byAppliance).map(([appliance, items]) => (
       <div class="mt-10">
-        <h2 class="text-lg font-semibold text-slate-900">{appliance}</h2>
+        <h2 class="flex items-center gap-2 text-lg font-semibold text-slate-900">
+          <ApplianceIcon name={appliance} class="h-5 w-5 text-blue-700" />
+          {appliance}
+        </h2>
         <div class="mt-4 grid gap-4 sm:grid-cols-2">
           {items.map((problem) => (
             <a

@@ -2,6 +2,7 @@
 import { getCollection, getEntries, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ApplianceIcon from '../../components/ApplianceIcon.astro';
 import { site } from '../../lib/site';
 import { serviceSchema, breadcrumbSchema } from '../../lib/schema';
 
@@ -35,7 +36,10 @@ const breadcrumbItems = [
   <Breadcrumbs items={breadcrumbItems} />
 
   <article class="mx-auto max-w-3xl px-4 py-12">
-    <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl">{entry.data.title} in Las Vegas</h1>
+    <span class="inline-flex rounded-lg bg-blue-50 p-3 text-blue-700">
+      <ApplianceIcon name={entry.data.icon} class="h-8 w-8" />
+    </span>
+    <h1 class="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">{entry.data.title} in Las Vegas</h1>
 
     <div class="mt-4 flex flex-wrap gap-3 text-sm">
       <span class="rounded-full bg-blue-50 px-3 py-1 font-medium text-blue-700">{site.serviceCallFee} service call, waived with repair</span>
