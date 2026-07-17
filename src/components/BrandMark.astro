@@ -5,10 +5,26 @@ interface Props {
 }
 
 const { name, class: className = 'px-4 py-2 text-sm' } = Astro.props;
+
+// Filler wordmark colors until licensed brand logo files are swapped in.
+const colors: Record<string, string> = {
+  samsung: 'text-blue-600',
+  ge: 'text-sky-700',
+  whirlpool: 'text-teal-600',
+  maytag: 'text-indigo-700',
+  bosch: 'text-red-600',
+  wolf: 'text-rose-700',
+  thermador: 'text-slate-800',
+  'sub-zero': 'text-cyan-800',
+  viking: 'text-emerald-700',
+};
+
+const slug = name.toLowerCase().replace(/\s+/g, '-');
+const color = colors[slug] ?? 'text-slate-700';
 ---
 
 <span
-  class={`inline-flex items-center justify-center rounded-md border border-slate-200 bg-slate-50 font-bold uppercase tracking-wide text-slate-700 group-hover:border-blue-300 group-hover:text-blue-700 ${className}`}
+  class={`inline-flex items-center justify-center rounded-md border border-slate-200 bg-white font-bold uppercase tracking-wide group-hover:border-slate-300 group-hover:shadow-sm ${color} ${className}`}
 >
   {name}
 </span>
