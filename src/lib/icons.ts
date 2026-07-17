@@ -8,7 +8,18 @@ const colors: Record<string, { bg: string; text: string }> = {
   disposal: { bg: 'bg-emerald-50', text: 'text-emerald-700' },
 };
 
+function applianceSlug(name: string) {
+  const slug = name.toLowerCase().replace(/\s+/g, '-');
+  return slug === 'garbage-disposal' ? 'disposal' : slug;
+}
+
 export function applianceColor(name: string) {
-  const slug = name.toLowerCase().replace(/\s+/g, '-') === 'garbage-disposal' ? 'disposal' : name.toLowerCase().replace(/\s+/g, '-');
-  return colors[slug] ?? { bg: 'bg-blue-50', text: 'text-blue-700' };
+  return colors[applianceSlug(name)] ?? { bg: 'bg-blue-50', text: 'text-blue-700' };
+}
+
+const withPhoto = new Set(['washer', 'dryer', 'refrigerator', 'dishwasher', 'oven', 'microwave']);
+
+export function applianceImage(name: string) {
+  const slug = applianceSlug(name);
+  return withPhoto.has(slug) ? `/appliances/${slug}.jpg` : null;
 }

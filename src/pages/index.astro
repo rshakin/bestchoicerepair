@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import ApplianceIcon from '../components/ApplianceIcon.astro';
 import BrandMark from '../components/BrandMark.astro';
 import { site } from '../lib/site';
-import { applianceColor } from '../lib/icons';
+import { applianceColor, applianceImage } from '../lib/icons';
 
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
 const locations = (await getCollection('locations')).sort((a, b) => a.data.order - b.data.order);
@@ -87,13 +87,20 @@ const featuredProblems = featuredProblemIds
       {services.map((service) => (
         <a
           href={`/services/${service.id}/`}
-          class="block rounded-lg border border-slate-200 p-5 transition hover:border-blue-300 hover:shadow-md"
+          class="block overflow-hidden rounded-lg border border-slate-200 transition hover:border-blue-300 hover:shadow-md"
         >
-          <span class={`inline-flex rounded-lg p-2.5 ${applianceColor(service.data.icon).bg} ${applianceColor(service.data.icon).text}`}>
-            <ApplianceIcon name={service.data.icon} />
-          </span>
-          <h3 class="mt-3 font-semibold text-slate-900">{service.data.title}</h3>
-          <p class="mt-2 text-sm text-slate-600">{service.data.shortDescription}</p>
+          {applianceImage(service.data.icon) && (
+            <div class="aspect-square bg-slate-50">
+              <img src={applianceImage(service.data.icon)!} alt={service.data.title} class="h-full w-full object-cover" loading="lazy" />
+            </div>
+          )}
+          <div class="p-5">
+            <span class={`inline-flex rounded-lg p-2.5 ${applianceColor(service.data.icon).bg} ${applianceColor(service.data.icon).text}`}>
+              <ApplianceIcon name={service.data.icon} />
+            </span>
+            <h3 class="mt-3 font-semibold text-slate-900">{service.data.title}</h3>
+            <p class="mt-2 text-sm text-slate-600">{service.data.shortDescription}</p>
+          </div>
         </a>
       ))}
     </div>

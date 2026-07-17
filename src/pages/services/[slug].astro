@@ -6,7 +6,7 @@ import ApplianceIcon from '../../components/ApplianceIcon.astro';
 import BrandMark from '../../components/BrandMark.astro';
 import { site } from '../../lib/site';
 import { serviceSchema, breadcrumbSchema } from '../../lib/schema';
-import { applianceColor } from '../../lib/icons';
+import { applianceColor, applianceImage } from '../../lib/icons';
 
 export async function getStaticPaths() {
   const services = await getCollection('services');
@@ -38,7 +38,13 @@ const breadcrumbItems = [
   <Breadcrumbs items={breadcrumbItems} />
 
   <article class="mx-auto max-w-3xl px-4 py-12">
-    <span class={`inline-flex rounded-lg p-3 ${applianceColor(entry.data.icon).bg} ${applianceColor(entry.data.icon).text}`}>
+    {applianceImage(entry.data.icon) && (
+      <div class="mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-xl bg-slate-50">
+        <img src={applianceImage(entry.data.icon)!} alt={entry.data.title} class="h-full w-full object-cover" />
+      </div>
+    )}
+
+    <span class={`mt-6 inline-flex rounded-lg p-3 ${applianceColor(entry.data.icon).bg} ${applianceColor(entry.data.icon).text}`}>
       <ApplianceIcon name={entry.data.icon} class="h-8 w-8" />
     </span>
     <h1 class="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">{entry.data.title} in Las Vegas</h1>
