@@ -7,26 +7,27 @@ import { applianceColor } from '../lib/icons';
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
 ---
 
-<div id="booking-overlay" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-950/70 p-4 backdrop-blur-sm">
-  <div id="booking-panel" class="relative flex max-h-[90vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl bg-white shadow-2xl dark:bg-slate-900">
-    <button
-      type="button"
-      id="booking-close"
-      aria-label="Close booking form"
-      class="absolute right-4 top-4 z-10 flex h-8 w-8 items-center justify-center rounded-full text-slate-400 hover:bg-slate-100 hover:text-slate-700 dark:hover:bg-slate-800 dark:hover:text-slate-200"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-      </svg>
-    </button>
-
-    <div class="flex gap-1.5 px-6 pt-6">
-      {[0, 1, 2, 3].map((i) => (
-        <span data-progress-dot class="h-1.5 flex-1 rounded-full bg-slate-200 transition-colors dark:bg-slate-700"></span>
-      ))}
+<div id="booking-overlay" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-950/70 px-4 pt-4 pb-[calc(1rem+env(safe-area-inset-bottom))] backdrop-blur-sm">
+  <div id="booking-panel" class="flex max-h-[90vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl bg-white shadow-2xl dark:bg-slate-900">
+    <div class="flex items-center gap-4 px-6 pt-6">
+      <div class="flex flex-1 gap-1.5">
+        {[0, 1, 2, 3].map((i) => (
+          <span data-progress-dot class="h-1.5 flex-1 rounded-full bg-slate-200 transition-colors dark:bg-slate-700"></span>
+        ))}
+      </div>
+      <button
+        type="button"
+        id="booking-close"
+        aria-label="Close booking form"
+        class="-m-2 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-slate-400 hover:bg-slate-100 hover:text-slate-700 dark:hover:bg-slate-800 dark:hover:text-slate-200"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
+      </button>
     </div>
 
-    <form id="booking-form" class="flex flex-1 flex-col overflow-y-auto px-6 pb-6 pt-4" novalidate>
+    <form id="booking-form" class="flex flex-1 flex-col overflow-y-auto px-6 pb-6 pt-4 [-webkit-overflow-scrolling:touch]" novalidate>
       <!-- Step 0: appliance -->
       <div data-step="0" class="booking-step">
         <h2 class="text-xl font-bold text-slate-900 dark:text-white">What needs a repair?</h2>
@@ -67,7 +68,7 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
           required
           rows="4"
           placeholder="e.g. Making a loud grinding noise and won't drain"
-          class="mt-5 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-white"
+          class="mt-5 w-full rounded-lg border border-slate-300 px-3 py-2 text-base sm:text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-white"
         ></textarea>
         <label for="preferred_time" class="mt-4 block text-sm font-medium text-slate-700 dark:text-slate-300">
           Preferred time <span class="font-normal text-slate-400">(optional)</span>
@@ -77,7 +78,7 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
           name="preferred_time"
           id="preferred_time"
           placeholder="e.g. Weekday mornings"
-          class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-white"
+          class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-base sm:text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-white"
         />
       </div>
 
@@ -86,15 +87,15 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
         <h2 class="text-xl font-bold text-slate-900 dark:text-white">Where should we send a technician?</h2>
         <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">We'll call to confirm a same-day or next-day time.</p>
         <div class="mt-5 grid gap-3 sm:grid-cols-2">
-          <input type="text" name="name" id="name" required placeholder="Name" class="rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-white" />
-          <input type="tel" name="phone" id="phone" required placeholder="Phone" class="rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-white" />
+          <input type="text" name="name" id="name" required placeholder="Name" class="rounded-lg border border-slate-300 px-3 py-2 text-base sm:text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-white" />
+          <input type="tel" name="phone" id="phone" required placeholder="Phone" class="rounded-lg border border-slate-300 px-3 py-2 text-base sm:text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-white" />
         </div>
-        <input type="email" name="email" id="email" required placeholder="Email" class="mt-3 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-white" />
-        <input type="text" name="address" id="address" required placeholder="Street address" class="mt-3 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-white" />
+        <input type="email" name="email" id="email" required placeholder="Email" class="mt-3 w-full rounded-lg border border-slate-300 px-3 py-2 text-base sm:text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-white" />
+        <input type="text" name="address" id="address" required placeholder="Street address" class="mt-3 w-full rounded-lg border border-slate-300 px-3 py-2 text-base sm:text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-white" />
         <div class="mt-3 grid grid-cols-3 gap-3">
-          <input type="text" name="city" placeholder="City" class="rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-white" />
-          <input type="text" name="state" value="NV" placeholder="State" class="rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-white" />
-          <input type="text" name="zip" placeholder="ZIP" class="rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-white" />
+          <input type="text" name="city" placeholder="City" class="rounded-lg border border-slate-300 px-3 py-2 text-base sm:text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-white" />
+          <input type="text" name="state" value="NV" placeholder="State" class="rounded-lg border border-slate-300 px-3 py-2 text-base sm:text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-white" />
+          <input type="text" name="zip" placeholder="ZIP" class="rounded-lg border border-slate-300 px-3 py-2 text-base sm:text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-white" />
         </div>
         <input type="text" name="company" tabindex="-1" autocomplete="off" class="absolute -left-[9999px] h-0 w-0 opacity-0" aria-hidden="true" />
       </div>

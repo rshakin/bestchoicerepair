@@ -3,6 +3,9 @@ name: North Las Vegas
 metaDescription: Appliance repair in North Las Vegas, NV. Washers, dryers, refrigerators, ovens & more. Same-day service, 90-day warranty.
 order: 4
 zipCodes: ['89030', '89031', '89032', '89081', '89084', '89085', '89086']
+neighborhoods: ['Aliante', 'Eldorado', 'Cheyenne Corridor']
+lat: 36.1989
+lng: -115.1175
 ---
 
 North Las Vegas has grown quickly, with newer master-planned communities like Aliante and Eldorado joining longer-established neighborhoods near Cheyenne and Las Vegas Boulevard North. We see a mix of newer appliance installs from recent home builds alongside repair calls for older units still running strong in established homes.

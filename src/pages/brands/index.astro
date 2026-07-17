@@ -43,7 +43,7 @@ const brandsByTier = tierOrder.map((tier) => ({
               href={`/brands/${brand.id}/`}
               class="group block rounded-lg border border-slate-200 p-6 transition hover:border-blue-300 hover:shadow-md dark:border-slate-800 dark:hover:border-blue-700"
             >
-              <BrandMark name={brand.data.name} class="px-4 py-2 text-sm" />
+              <BrandMark name={brand.data.name} size="md" />
               <h3 class="mt-4 text-lg font-semibold text-slate-900 dark:text-white">{brand.data.name}</h3>
               <span class="mt-4 inline-block text-sm font-semibold text-blue-700 dark:text-blue-400">View {brand.data.name} repairs &rarr;</span>
             </a>

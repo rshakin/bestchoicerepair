@@ -66,6 +66,31 @@ export function serviceSchema(opts: { name: string; description: string; url: st
   };
 }
 
+export function locationServiceSchema(opts: { city: string; description: string; url: string; lat: number; lng: number }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: 'Appliance Repair',
+    name: `Appliance Repair in ${opts.city} — ${site.name}`,
+    description: opts.description,
+    url: opts.url,
+    provider: {
+      '@type': 'HomeAndConstructionBusiness',
+      name: site.name,
+      telephone: site.phoneHref.replace('tel:', ''),
+    },
+    areaServed: {
+      '@type': 'City',
+      name: opts.city,
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: opts.lat,
+        longitude: opts.lng,
+      },
+    },
+  };
+}
+
 export function faqSchema(items: { question: string; answer: string }[]) {
   return {
     '@context': 'https://schema.org',
