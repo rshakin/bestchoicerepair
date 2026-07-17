@@ -1,12 +1,10 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { site } from '../lib/site';
 
-// TODO: GitHub Pages is static and can't process form submissions directly.
-// Sign up at https://formspree.io (free tier works fine here), create a
-// form, and replace YOUR_FORM_ID below with the real endpoint ID.
-const formAction = 'https://formspree.io/f/YOUR_FORM_ID';
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
 ---
 
 <Layout
@@ -50,28 +48,109 @@ const formAction = 'https://formspree.io/f/YOUR_FORM_ID';
       </dl>
     </div>
 
-    <form action={formAction} method="POST" class="rounded-lg border border-slate-200 p-6 dark:border-slate-800">
-      <div class="grid gap-4">
-        <div>
-          <label for="name" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Name</label>
-          <input type="text" name="name" id="name" required class="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-900 dark:text-white" />
+    <form id="booking-form" class="relative rounded-lg border border-slate-200 p-6 dark:border-slate-800" novalidate>
+      <div id="booking-form-fields" class="grid gap-4">
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label for="name" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Name</label>
+            <input type="text" name="name" id="name" required class="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-900 dark:text-white" />
+          </div>
+          <div>
+            <label for="phone" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Phone</label>
+            <input type="tel" name="phone" id="phone" required class="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-900 dark:text-white" />
+          </div>
         </div>
+
         <div>
-          <label for="phone" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Phone</label>
-          <input type="tel" name="phone" id="phone" required class="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-900 dark:text-white" />
+          <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Email <span class="text-slate-400">(optional)</span></label>
+          <input type="email" name="email" id="email" class="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-900 dark:text-white" />
         </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label for="appliance_type" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Appliance</label>
+            <select name="appliance_type" id="appliance_type" required class="mt-1 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-900 dark:text-white">
+              <option value="">Select an appliance&hellip;</option>
+              {services.map((service) => (
+                <option value={service.data.title}>{service.data.title}</option>
+              ))}
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="preferred_time" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Preferred time <span class="text-slate-400">(optional)</span></label>
+            <input type="text" name="preferred_time" id="preferred_time" placeholder="e.g. Weekday mornings" class="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-900 dark:text-white" />
+          </div>
+        </div>
+
         <div>
-          <label for="appliance" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Appliance & Issue</label>
-          <input type="text" name="appliance" id="appliance" placeholder="e.g. Refrigerator not cooling" class="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-900 dark:text-white" />
+          <label for="address" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Address</label>
+          <input type="text" name="address" id="address" placeholder="Street address" class="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-900 dark:text-white" />
+          <div class="mt-2 grid grid-cols-3 gap-2">
+            <input type="text" name="city" placeholder="City" class="rounded-md border border-slate-300 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-900 dark:text-white" />
+            <input type="text" name="state" placeholder="State" value="NV" class="rounded-md border border-slate-300 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-900 dark:text-white" />
+            <input type="text" name="zip" placeholder="ZIP" class="rounded-md border border-slate-300 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-900 dark:text-white" />
+          </div>
         </div>
+
         <div>
-          <label for="message" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Message</label>
-          <textarea name="message" id="message" rows="4" class="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-900 dark:text-white"></textarea>
+          <label for="description" class="block text-sm font-medium text-slate-700 dark:text-slate-300">What's going on?</label>
+          <textarea name="description" id="description" rows="4" required placeholder="Describe the issue you're seeing" class="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-900 dark:text-white"></textarea>
         </div>
+
+        <input type="text" name="company" tabindex="-1" autocomplete="off" class="absolute -left-[9999px] h-0 w-0 opacity-0" aria-hidden="true" />
+
         <button type="submit" class="rounded-md bg-blue-700 px-6 py-3 font-semibold text-white hover:bg-blue-800">
           Request Service
         </button>
       </div>
+
+      <div id="booking-form-success" class="hidden text-center">
+        <p class="text-lg font-semibold text-slate-900 dark:text-white">Request sent!</p>
+        <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">We'll call you back same-day to confirm a time.</p>
+      </div>
+
+      <div id="booking-form-error" class="hidden text-center">
+        <p class="text-lg font-semibold text-slate-900 dark:text-white">We couldn't send that automatically.</p>
+        <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
+          Please call or text us instead — <a href={site.phoneHref} class="font-semibold text-blue-700 hover:underline dark:text-blue-400">{site.phoneDisplay}</a>.
+        </p>
+      </div>
     </form>
   </section>
 </Layout>
+
+<script define:vars={{ bookingApiUrl: site.bookingApiUrl }}>
+  const form = document.getElementById('booking-form');
+  const fields = document.getElementById('booking-form-fields');
+  const successEl = document.getElementById('booking-form-success');
+  const errorEl = document.getElementById('booking-form-error');
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!bookingApiUrl) {
+      fields.classList.add('hidden');
+      errorEl.classList.remove('hidden');
+      return;
+    }
+
+    const data = Object.fromEntries(new FormData(form).entries());
+    const submitButton = form.querySelector('button[type="submit"]');
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending…';
+
+    try {
+      const res = await fetch(bookingApiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error('Request failed');
+      fields.classList.add('hidden');
+      successEl.classList.remove('hidden');
+    } catch (e) {
+      fields.classList.add('hidden');
+      errorEl.classList.remove('hidden');
+    }
+  });
+</script>
