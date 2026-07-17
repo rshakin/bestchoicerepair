@@ -22,7 +22,7 @@ export const site = {
     'Summerlin',
     'Green Valley',
   ],
-  brandsShort: ['Samsung', 'GE', 'Whirlpool', 'Maytag', 'Bosch', 'Wolf', 'Thermador', 'Sub-Zero', 'Viking'],
+  brandsShort: ['Samsung', 'GE', 'Whirlpool', 'Maytag', 'Bosch', 'LG', 'Wolf', 'Thermador', 'Sub-Zero', 'Viking'],
   discounts: ['$10 off for mentioning our website', 'Military & veteran discounts available'],
 } as const;
 
