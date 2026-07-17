@@ -1,7 +1,28 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ApplianceIcon from '../components/ApplianceIcon.astro';
 import { site } from '../lib/site';
+import { applianceColor } from '../lib/icons';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+
+const whyUs = [
+  { title: 'Same-day & next-day service', body: 'Most calls get an appointment the same day or the next — no waiting a week for a technician.' },
+  { title: 'Upfront diagnostic pricing', body: `${site.serviceCallFee} to diagnose the problem, waived completely when you move forward with the repair.` },
+  { title: site.warranty, body: 'Every repair is backed in writing. If a part fails within the warranty period, we come back and fix it at no charge.' },
+  { title: 'Licensed & insured', body: "You're covered if anything goes wrong on the job — we carry the insurance to back it up." },
+  { title: 'All major brands', body: 'From everyday names like Whirlpool and GE to premium built-in brands like Sub-Zero, Wolf, and Thermador.' },
+  { title: 'Local, not a call center', body: "Dispatch is based in the Las Vegas valley, so you're talking to someone who knows the area — not a national scheduling queue." },
+];
+
+const steps = [
+  { step: '1', title: 'Call or request service', body: 'Call, text, or send a request online with your appliance and the issue you\'re seeing.' },
+  { step: '2', title: 'Same-day diagnosis', body: 'A technician comes out, inspects the appliance, and tells you exactly what\'s wrong.' },
+  { step: '3', title: 'Upfront price, no surprises', body: 'You approve the repair cost before any work starts — the diagnostic fee is waived once you do.' },
+  { step: '4', title: 'Repair backed by warranty', body: `Most repairs are finished same-visit, backed by our ${site.warranty.toLowerCase()}.` },
+];
 ---
 
 <Layout
@@ -29,6 +50,49 @@ import { site } from '../lib/site';
         We also offer a $10 discount for mentioning our website, along with military and veteran discounts.
       </p>
       <!-- TODO: add license number, BBB accreditation, years in business, and founder/team info once supplied by the business owner. -->
+    </div>
+
+    <div class="mt-14">
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Why homeowners choose us</h2>
+      <div class="mt-6 grid gap-5 sm:grid-cols-2">
+        {whyUs.map((item) => (
+          <div class="rounded-lg border border-slate-200 p-5 dark:border-slate-800">
+            <h3 class="font-semibold text-slate-900 dark:text-white">{item.title}</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-14">
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white">How it works</h2>
+      <div class="mt-6 grid gap-5 sm:grid-cols-2">
+        {steps.map((item) => (
+          <div class="flex gap-4">
+            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-700 text-sm font-bold text-white">
+              {item.step}
+            </span>
+            <div>
+              <h3 class="font-semibold text-slate-900 dark:text-white">{item.title}</h3>
+              <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">{item.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-14">
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white">What we repair</h2>
+      <div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
+        {services.map((service) => (
+          <a href={`/services/${service.id}/`} class="flex flex-col items-center gap-2 rounded-lg border border-slate-200 p-4 text-center transition hover:border-blue-300 dark:border-slate-800 dark:hover:border-blue-700">
+            <span class={`inline-flex h-10 w-10 items-center justify-center rounded-lg ${applianceColor(service.data.icon).bg} ${applianceColor(service.data.icon).text}`}>
+              <ApplianceIcon name={service.data.icon} class="h-5 w-5" />
+            </span>
+            <span class="text-sm font-medium text-slate-900 dark:text-white">{service.data.title}</span>
+          </a>
+        ))}
+      </div>
     </div>
 
     <div class="mt-12 rounded-lg bg-slate-900 p-8 text-center">
