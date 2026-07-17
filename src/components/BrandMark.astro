@@ -8,24 +8,24 @@ const { name, class: className = 'px-4 py-2 text-sm' } = Astro.props;
 
 // Filler wordmark colors until licensed brand logo files are swapped in.
 const colors: Record<string, string> = {
-  samsung: 'text-blue-600',
-  ge: 'text-sky-700',
-  whirlpool: 'text-teal-600',
-  maytag: 'text-indigo-700',
-  bosch: 'text-red-600',
-  lg: 'text-pink-700',
-  wolf: 'text-rose-700',
-  thermador: 'text-slate-800',
-  'sub-zero': 'text-cyan-800',
-  viking: 'text-emerald-700',
+  samsung: 'text-blue-600 dark:text-blue-400',
+  ge: 'text-sky-700 dark:text-sky-400',
+  whirlpool: 'text-teal-600 dark:text-teal-400',
+  maytag: 'text-indigo-700 dark:text-indigo-400',
+  bosch: 'text-red-600 dark:text-red-400',
+  lg: 'text-pink-700 dark:text-pink-400',
+  wolf: 'text-rose-700 dark:text-rose-400',
+  thermador: 'text-slate-800 dark:text-slate-200',
+  'sub-zero': 'text-cyan-800 dark:text-cyan-400',
+  viking: 'text-emerald-700 dark:text-emerald-400',
 };
 
 const slug = name.toLowerCase().replace(/\s+/g, '-');
-const color = colors[slug] ?? 'text-slate-700';
+const color = colors[slug] ?? 'text-slate-700 dark:text-slate-300';
 ---
 
 <span
-  class={`inline-flex items-center justify-center rounded-md border border-slate-200 bg-white font-bold uppercase tracking-wide group-hover:border-slate-300 group-hover:shadow-sm ${color} ${className}`}
+  class={`inline-flex items-center justify-center rounded-md border border-slate-200 bg-white font-bold uppercase tracking-wide group-hover:border-slate-300 group-hover:shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:group-hover:border-slate-600 ${color} ${className}`}
 >
   {name}
 </span>

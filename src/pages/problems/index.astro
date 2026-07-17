@@ -22,14 +22,14 @@ const byAppliance = problems.reduce<Record<string, typeof problems>>((acc, probl
   <Breadcrumbs items={[{ name: 'Home', url: '/' }, { name: 'Problems', url: '/problems/' }]} />
 
   <section class="mx-auto max-w-6xl px-4 py-12">
-    <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl">Common Appliance Problems</h1>
-    <p class="mt-3 max-w-2xl text-slate-600">
+    <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl dark:text-white">Common Appliance Problems</h1>
+    <p class="mt-3 max-w-2xl text-slate-600 dark:text-slate-400">
       Not sure what's wrong? Find your symptom below to see likely causes and how we fix it.
     </p>
 
     {Object.entries(byAppliance).map(([appliance, items]) => (
       <div class="mt-10">
-        <h2 class="flex items-center gap-2 text-lg font-semibold text-slate-900">
+        <h2 class="flex items-center gap-2 text-lg font-semibold text-slate-900 dark:text-white">
           <span class={`inline-flex rounded-md p-1.5 ${applianceColor(appliance).bg} ${applianceColor(appliance).text}`}>
             <ApplianceIcon name={appliance} class="h-4 w-4" />
           </span>
@@ -39,10 +39,10 @@ const byAppliance = problems.reduce<Record<string, typeof problems>>((acc, probl
           {items.map((problem) => (
             <a
               href={`/problems/${problem.id}/`}
-              class="block rounded-lg border border-slate-200 p-5 transition hover:border-blue-300 hover:shadow-md"
+              class="block rounded-lg border border-slate-200 p-5 transition hover:border-blue-300 hover:shadow-md dark:border-slate-800 dark:hover:border-blue-700"
             >
-              <h3 class="font-semibold text-slate-900">{problem.data.title}</h3>
-              <span class="mt-2 inline-block text-sm font-semibold text-blue-700">See causes &rarr;</span>
+              <h3 class="font-semibold text-slate-900 dark:text-white">{problem.data.title}</h3>
+              <span class="mt-2 inline-block text-sm font-semibold text-blue-700 dark:text-blue-400">See causes &rarr;</span>
             </a>
           ))}
         </div>

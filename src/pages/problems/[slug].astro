@@ -44,28 +44,28 @@ const faq = faqSchema([
     <span class={`inline-flex rounded-lg p-3 ${applianceColor(entry.data.appliance).bg} ${applianceColor(entry.data.appliance).text}`}>
       <ApplianceIcon name={entry.data.appliance} class="h-8 w-8" />
     </span>
-    <h1 class="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">{entry.data.title}</h1>
+    <h1 class="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl dark:text-white">{entry.data.title}</h1>
 
     <div class="mt-8">
-      <h2 class="text-lg font-semibold text-slate-900">Likely causes</h2>
+      <h2 class="text-lg font-semibold text-slate-900 dark:text-white">Likely causes</h2>
       <ul class="mt-4 space-y-2">
         {entry.data.causes.map((cause) => (
-          <li class="flex items-start gap-2 text-sm text-slate-700">
-            <span class="mt-1 text-blue-600">&#10003;</span>
+          <li class="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
+            <span class="mt-1 text-blue-600 dark:text-blue-400">&#10003;</span>
             {cause}
           </li>
         ))}
       </ul>
     </div>
 
-    <div class="prose prose-slate mt-8 max-w-none">
+    <div class="prose prose-slate mt-8 max-w-none dark:prose-invert">
       <Content />
     </div>
 
     {service && (
-      <p class="mt-8 text-sm text-slate-600">
+      <p class="mt-8 text-sm text-slate-600 dark:text-slate-400">
         This is one of the issues covered under our{' '}
-        <a href={`/services/${service.id}/`} class="font-semibold text-blue-700 hover:underline">{service.data.title}</a> service.
+        <a href={`/services/${service.id}/`} class="font-semibold text-blue-700 hover:underline dark:text-blue-400">{service.data.title}</a> service.
       </p>
     )}
 

@@ -55,24 +55,24 @@ const faq = faqSchema([
         <ApplianceIcon name={appliance.slug} class="h-8 w-8" />
       </span>
       <div>
-        <p class="text-sm font-semibold uppercase tracking-wide text-slate-500">{brandGroup.brand} &middot; {appliance.title}</p>
-        <h1 class="font-mono text-3xl font-bold text-slate-900 sm:text-4xl">{entry.code}</h1>
+        <p class="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-500">{brandGroup.brand} &middot; {appliance.title}</p>
+        <h1 class="font-mono text-3xl font-bold text-slate-900 sm:text-4xl dark:text-white">{entry.code}</h1>
       </div>
     </div>
 
-    <p class="mt-6 text-xl font-semibold text-slate-900">{entry.meaning}</p>
+    <p class="mt-6 text-xl font-semibold text-slate-900 dark:text-white">{entry.meaning}</p>
 
     <div class="mt-6">
-      <h2 class="text-lg font-semibold text-slate-900">What causes it</h2>
-      <p class="mt-2 text-slate-600">{entry.cause}</p>
+      <h2 class="text-lg font-semibold text-slate-900 dark:text-white">What causes it</h2>
+      <p class="mt-2 text-slate-600 dark:text-slate-400">{entry.cause}</p>
     </div>
 
     <div class="mt-8">
-      <h2 class="text-lg font-semibold text-slate-900">What to check before calling</h2>
+      <h2 class="text-lg font-semibold text-slate-900 dark:text-white">What to check before calling</h2>
       <ul class="mt-3 space-y-2">
         {entry.diySteps.map((step) => (
-          <li class="flex items-start gap-2 text-sm text-slate-700">
-            <span class="mt-1 text-blue-600">&#10003;</span>
+          <li class="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
+            <span class="mt-1 text-blue-600 dark:text-blue-400">&#10003;</span>
             {step}
           </li>
         ))}
@@ -94,7 +94,7 @@ const faq = faqSchema([
       </div>
     </div>
 
-    <a href={`/error-codes/${appliance.slug}/`} class="mt-8 inline-block text-sm font-semibold text-blue-700 hover:underline">
+    <a href={`/error-codes/${appliance.slug}/`} class="mt-8 inline-block text-sm font-semibold text-blue-700 hover:underline dark:text-blue-400">
       &larr; All {appliance.title} error codes
     </a>
   </article>

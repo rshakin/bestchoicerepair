@@ -80,8 +80,8 @@ const featuredProblems = featuredProblemIds
 
   <section class="mx-auto max-w-6xl px-4 py-16">
     <div class="flex items-end justify-between">
-      <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl">Appliances We Repair</h2>
-      <a href="/services/" class="text-sm font-semibold text-blue-700 hover:underline">View all services &rarr;</a>
+      <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl dark:text-white">Appliances We Repair</h2>
+      <a href="/services/" class="text-sm font-semibold text-blue-700 hover:underline dark:text-blue-400">View all services &rarr;</a>
     </div>
     <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {services.map((service) => {
@@ -89,37 +89,37 @@ const featuredProblems = featuredProblemIds
         return (
         <a
           href={`/services/${service.id}/`}
-          class="block rounded-lg border border-slate-200 p-5 transition hover:border-blue-300 hover:shadow-md"
+          class="block rounded-lg border border-slate-200 p-5 transition hover:border-blue-300 hover:shadow-md dark:border-slate-800 dark:hover:border-blue-700"
         >
           {img ? (
-            <Image src={img} alt={service.data.title} width={48} height={48} class="h-12 w-12 rounded-lg bg-slate-50 object-cover" loading="lazy" />
+            <Image src={img} alt={service.data.title} width={48} height={48} class="h-12 w-12 rounded-lg bg-slate-50 object-cover dark:bg-slate-800" loading="lazy" />
           ) : (
             <span class={`inline-flex h-12 w-12 items-center justify-center rounded-lg ${applianceColor(service.data.icon).bg} ${applianceColor(service.data.icon).text}`}>
               <ApplianceIcon name={service.data.icon} />
             </span>
           )}
-          <h3 class="mt-3 font-semibold text-slate-900">{service.data.title}</h3>
-          <p class="mt-2 text-sm text-slate-600">{service.data.shortDescription}</p>
+          <h3 class="mt-3 font-semibold text-slate-900 dark:text-white">{service.data.title}</h3>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">{service.data.shortDescription}</p>
         </a>
         );
       })}
     </div>
   </section>
 
-  <section class="border-y border-slate-100 bg-slate-50">
+  <section class="border-y border-slate-100 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/50">
     <div class="mx-auto max-w-6xl px-4 py-16">
       <div class="flex items-end justify-between">
-        <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl">Common Problems We Fix</h2>
-        <a href="/problems/" class="text-sm font-semibold text-blue-700 hover:underline">See all problems &rarr;</a>
+        <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl dark:text-white">Common Problems We Fix</h2>
+        <a href="/problems/" class="text-sm font-semibold text-blue-700 hover:underline dark:text-blue-400">See all problems &rarr;</a>
       </div>
       <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {featuredProblems.map((problem) => (
           <a
             href={`/problems/${problem.id}/`}
-            class="block rounded-lg bg-white p-5 shadow-sm transition hover:shadow-md"
+            class="block rounded-lg bg-white p-5 shadow-sm transition hover:shadow-md dark:bg-slate-900 dark:shadow-none dark:ring-1 dark:ring-slate-800"
           >
-            <h3 class="font-semibold text-slate-900">{problem.data.title}</h3>
-            <span class="mt-2 inline-block text-sm font-semibold text-blue-700">See causes &rarr;</span>
+            <h3 class="font-semibold text-slate-900 dark:text-white">{problem.data.title}</h3>
+            <span class="mt-2 inline-block text-sm font-semibold text-blue-700 dark:text-blue-400">See causes &rarr;</span>
           </a>
         ))}
       </div>
@@ -127,8 +127,8 @@ const featuredProblems = featuredProblemIds
   </section>
 
   <section class="mx-auto max-w-6xl px-4 py-16">
-    <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl">Brands We Service</h2>
-    <p class="mt-3 max-w-2xl text-slate-600">
+    <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl dark:text-white">Brands We Service</h2>
+    <p class="mt-3 max-w-2xl text-slate-600 dark:text-slate-400">
       From everyday brands to premium kitchen makers found in Summerlin and Henderson homes.
     </p>
     <div class="mt-6 flex flex-wrap gap-3">
@@ -140,17 +140,17 @@ const featuredProblems = featuredProblemIds
     </div>
   </section>
 
-  <section class="border-y border-slate-100 bg-slate-50">
+  <section class="border-y border-slate-100 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/50">
     <div class="mx-auto max-w-6xl px-4 py-16">
-      <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl">Serving the Las Vegas Valley</h2>
+      <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl dark:text-white">Serving the Las Vegas Valley</h2>
       <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {locations.map((location) => (
           <a
             href={`/locations/${location.id}/`}
-            class="block rounded-lg bg-white p-5 shadow-sm transition hover:shadow-md"
+            class="block rounded-lg bg-white p-5 shadow-sm transition hover:shadow-md dark:bg-slate-900 dark:shadow-none dark:ring-1 dark:ring-slate-800"
           >
-            <h3 class="font-semibold text-slate-900">{location.data.name}</h3>
-            <span class="mt-2 inline-block text-sm font-semibold text-blue-700">Service details &rarr;</span>
+            <h3 class="font-semibold text-slate-900 dark:text-white">{location.data.name}</h3>
+            <span class="mt-2 inline-block text-sm font-semibold text-blue-700 dark:text-blue-400">Service details &rarr;</span>
           </a>
         ))}
       </div>

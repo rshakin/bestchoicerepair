@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl *)",
+      "Bash(google-chrome *)",
+      "Bash(./node_modules/.bin/astro dev status)"
+    ]
+  }
+}

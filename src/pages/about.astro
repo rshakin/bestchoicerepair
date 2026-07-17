@@ -11,9 +11,9 @@ import { site } from '../lib/site';
   <Breadcrumbs items={[{ name: 'Home', url: '/' }, { name: 'About', url: '/about/' }]} />
 
   <article class="mx-auto max-w-3xl px-4 py-12">
-    <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl">About {site.name}</h1>
+    <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl dark:text-white">About {site.name}</h1>
 
-    <div class="prose prose-slate mt-8 max-w-none">
+    <div class="prose prose-slate mt-8 max-w-none dark:prose-invert">
       <p>
         {site.name} is a family-owned appliance repair company serving the Las Vegas valley. Our approach is
         simple: {site.tagline.toLowerCase()} We show up on time, diagnose the actual problem before recommending
