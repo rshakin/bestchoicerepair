@@ -31,6 +31,11 @@ export const site = {
   ],
   brandsShort: ['Samsung', 'GE', 'Whirlpool', 'Maytag', 'Bosch', 'LG', 'Wolf', 'Thermador', 'Sub-Zero', 'Viking'],
   discounts: ['$10 off for mentioning our website', 'Military & veteran discounts available'],
+  // TODO: add the real Google Business Profile, Yelp, and social media
+  // URLs here once available — powers the LocalBusiness schema's `sameAs`,
+  // which helps Google tie this site to the same business on other
+  // platforms (matters for local pack ranking / knowledge panel).
+  sameAs: [] as string[],
 } as const;
 
 export const navLinks = [

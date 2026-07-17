@@ -18,6 +18,7 @@ export function localBusinessSchema() {
       '@type': 'City',
       name: city,
     })),
+    ...(site.sameAs.length > 0 ? { sameAs: site.sameAs } : {}),
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
