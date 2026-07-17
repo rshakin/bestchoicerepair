@@ -1,3 +1,12 @@
+import type { ImageMetadata } from 'astro';
+import washer from '../assets/appliances/washer.jpg';
+import dryer from '../assets/appliances/dryer.jpg';
+import refrigerator from '../assets/appliances/refrigerator.jpg';
+import dishwasher from '../assets/appliances/dishwasher.jpg';
+import oven from '../assets/appliances/oven.jpg';
+import microwave from '../assets/appliances/microwave.jpg';
+import disposal from '../assets/appliances/disposal.jpg';
+
 const colors: Record<string, { bg: string; text: string }> = {
   washer: { bg: 'bg-blue-50', text: 'text-blue-700' },
   dryer: { bg: 'bg-amber-50', text: 'text-amber-700' },
@@ -17,9 +26,8 @@ export function applianceColor(name: string) {
   return colors[applianceSlug(name)] ?? { bg: 'bg-blue-50', text: 'text-blue-700' };
 }
 
-const withPhoto = new Set(['washer', 'dryer', 'refrigerator', 'dishwasher', 'oven', 'microwave', 'disposal']);
+const images: Record<string, ImageMetadata> = { washer, dryer, refrigerator, dishwasher, oven, microwave, disposal };
 
-export function applianceImage(name: string) {
-  const slug = applianceSlug(name);
-  return withPhoto.has(slug) ? `/appliances/${slug}.jpg` : null;
+export function applianceImage(name: string): ImageMetadata | null {
+  return images[applianceSlug(name)] ?? null;
 }
