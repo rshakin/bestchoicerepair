@@ -18,7 +18,7 @@ const colors: Record<string, string> = {
 const logos: Record<string, string> = {
   ge: '/brands/ge.svg',
   whirlpool: '/brands/whirlpool.svg',
-  maytag: '/brands/maytag.svg',
+  maytag: '/brands/maytag.png',
   thermador: '/brands/thermador.svg',
   viking: '/brands/viking.svg',
   'sub-zero': '/brands/sub-zero.png',
@@ -29,7 +29,14 @@ const slug = name.toLowerCase().replace(/\s+/g, '-');
 const logo = logos[slug];
 const color = colors[slug] ?? 'text-slate-700 dark:text-slate-300';
 
-const logoHeight = className.includes('text-xs') ? 'h-4' : className.includes('text-base') ? 'h-6' : 'h-5';
+// Embossed/metallic badge-style logos (as opposed to flat wordmarks) need
+// more pixels to stay legible, so they get an extra size step.
+const isEmbossed = slug === 'maytag' || slug === 'sub-zero' || slug === 'wolf';
+const logoHeight = className.includes('text-xs')
+  ? (isEmbossed ? 'h-6' : 'h-5')
+  : className.includes('text-base')
+    ? (isEmbossed ? 'h-8' : 'h-7')
+    : (isEmbossed ? 'h-7' : 'h-6');
 ---
 
 <span
