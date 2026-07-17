@@ -6,7 +6,7 @@ export const site = {
   phoneDisplayLocal: '(702) 726-9648',
   phoneHrefLocal: 'tel:+17027269648',
   smsHref: 'sms:+18005012023',
-  email: 'bestchoicerepair@outlook.com',
+  email: 'repair@bestchoicerepair.com',
   serviceCallFee: '$89',
   warranty: '90-Day Warranty on Parts & Labor',
   hours: [
