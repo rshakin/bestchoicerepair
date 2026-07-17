@@ -5,6 +5,7 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ApplianceIcon from '../../components/ApplianceIcon.astro';
 import { site } from '../../lib/site';
 import { breadcrumbSchema, faqSchema } from '../../lib/schema';
+import { applianceColor } from '../../lib/icons';
 
 export async function getStaticPaths() {
   const problems = await getCollection('problems');
@@ -40,7 +41,7 @@ const faq = faqSchema([
   <Breadcrumbs items={breadcrumbItems} />
 
   <article class="mx-auto max-w-3xl px-4 py-12">
-    <span class="inline-flex rounded-lg bg-blue-50 p-3 text-blue-700">
+    <span class={`inline-flex rounded-lg p-3 ${applianceColor(entry.data.appliance).bg} ${applianceColor(entry.data.appliance).text}`}>
       <ApplianceIcon name={entry.data.appliance} class="h-8 w-8" />
     </span>
     <h1 class="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">{entry.data.title}</h1>

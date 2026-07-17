@@ -4,6 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ApplianceIcon from '../../components/ApplianceIcon.astro';
 import { site } from '../../lib/site';
+import { applianceColor } from '../../lib/icons';
 
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
 ---
@@ -27,7 +28,7 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
           href={`/services/${service.id}/`}
           class="block rounded-lg border border-slate-200 p-6 transition hover:border-blue-300 hover:shadow-md"
         >
-          <span class="inline-flex rounded-lg bg-blue-50 p-2.5 text-blue-700">
+          <span class={`inline-flex rounded-lg p-2.5 ${applianceColor(service.data.icon).bg} ${applianceColor(service.data.icon).text}`}>
             <ApplianceIcon name={service.data.icon} />
           </span>
           <h2 class="mt-3 text-lg font-semibold text-slate-900">{service.data.title}</h2>
