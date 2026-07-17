@@ -1,11 +1,11 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
-import ApplianceIcon from '../../components/ApplianceIcon.astro';
-import { site } from '../../lib/site';
-import { applianceColor } from '../../lib/icons';
-import { errorCodes } from '../../lib/errorCodes';
-import { breadcrumbSchema } from '../../lib/schema';
+import Layout from '../../../layouts/Layout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import ApplianceIcon from '../../../components/ApplianceIcon.astro';
+import { site } from '../../../lib/site';
+import { applianceColor } from '../../../lib/icons';
+import { errorCodes, codeSlug } from '../../../lib/errorCodes';
+import { breadcrumbSchema } from '../../../lib/schema';
 
 export async function getStaticPaths() {
   return errorCodes.map((appliance) => ({ params: { appliance: appliance.slug }, props: { appliance } }));
@@ -36,20 +36,24 @@ const breadcrumbItems = [
     </div>
 
     <p class="mt-6 text-slate-600">
-      Find your brand below for what the code on your display means and what usually causes it. Codes can vary by
-      model year — if yours doesn't match, call us and we'll pull the exact fault with our diagnostic tools.
+      Tap a code below for what it means, what usually causes it, and a couple of things you can check yourself.
+      Codes can vary by model year — if yours doesn't match, call us and we'll pull the exact fault with our
+      diagnostic tools.
     </p>
 
     {appliance.brands.map((brandGroup) => (
       <div class="mt-10">
         <h2 class="text-lg font-semibold text-slate-900">{brandGroup.brand}</h2>
-        <div class="mt-4 space-y-4">
+        <div class="mt-4 space-y-3">
           {brandGroup.codes.map((entry) => (
-            <div class="rounded-lg border border-slate-200 p-4">
+            <a
+              href={`/error-codes/${appliance.slug}/${brandGroup.brandSlug}-${codeSlug(entry.code)}/`}
+              class="block rounded-lg border border-slate-200 p-4 transition hover:border-blue-300 hover:shadow-sm"
+            >
               <p class="font-mono text-sm font-semibold text-blue-700">{entry.code}</p>
               <p class="mt-1 font-medium text-slate-900">{entry.meaning}</p>
-              <p class="mt-1 text-sm text-slate-600">{entry.cause}</p>
-            </div>
+              <span class="mt-2 inline-block text-sm font-semibold text-blue-700">What to check &rarr;</span>
+            </a>
           ))}
         </div>
       </div>

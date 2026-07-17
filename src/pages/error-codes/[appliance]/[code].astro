@@ -1,0 +1,101 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import ApplianceIcon from '../../../components/ApplianceIcon.astro';
+import { site } from '../../../lib/site';
+import { applianceColor } from '../../../lib/icons';
+import { errorCodes, codeSlug } from '../../../lib/errorCodes';
+import { breadcrumbSchema, faqSchema } from '../../../lib/schema';
+
+export async function getStaticPaths() {
+  return errorCodes.flatMap((appliance) =>
+    appliance.brands.flatMap((brandGroup) =>
+      brandGroup.codes.map((entry) => ({
+        params: { appliance: appliance.slug, code: `${brandGroup.brandSlug}-${codeSlug(entry.code)}` },
+        props: { appliance, brandGroup, entry },
+      }))
+    )
+  );
+}
+
+const { appliance, brandGroup, entry } = Astro.props as {
+  appliance: (typeof errorCodes)[number];
+  brandGroup: (typeof errorCodes)[number]['brands'][number];
+  entry: (typeof errorCodes)[number]['brands'][number]['codes'][number];
+};
+
+const breadcrumbItems = [
+  { name: 'Home', url: '/' },
+  { name: 'Error Codes', url: '/error-codes/' },
+  { name: appliance.title, url: `/error-codes/${appliance.slug}/` },
+  { name: `${brandGroup.brand} ${entry.code}`, url: `/error-codes/${appliance.slug}/${brandGroup.brandSlug}-${codeSlug(entry.code)}/` },
+];
+
+const faq = faqSchema([
+  {
+    question: `What does ${brandGroup.brand} ${appliance.title.toLowerCase()} code ${entry.code} mean?`,
+    answer: `${entry.meaning}. ${entry.cause}`,
+  },
+]);
+---
+
+<Layout
+  title={`${brandGroup.brand} ${appliance.title} Code ${entry.code} | ${site.name}`}
+  description={`${brandGroup.brand} ${appliance.title.toLowerCase()} error code ${entry.code}: ${entry.meaning}. What causes it and what to check before calling for repair.`}
+  schema={[
+    faq,
+    breadcrumbSchema(breadcrumbItems.map((i) => ({ ...i, url: new URL(i.url, Astro.site).toString() }))),
+  ]}
+>
+  <Breadcrumbs items={breadcrumbItems} />
+
+  <article class="mx-auto max-w-3xl px-4 py-12">
+    <div class="flex items-center gap-4">
+      <span class={`inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-lg ${applianceColor(appliance.slug).bg} ${applianceColor(appliance.slug).text}`}>
+        <ApplianceIcon name={appliance.slug} class="h-8 w-8" />
+      </span>
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-wide text-slate-500">{brandGroup.brand} &middot; {appliance.title}</p>
+        <h1 class="font-mono text-3xl font-bold text-slate-900 sm:text-4xl">{entry.code}</h1>
+      </div>
+    </div>
+
+    <p class="mt-6 text-xl font-semibold text-slate-900">{entry.meaning}</p>
+
+    <div class="mt-6">
+      <h2 class="text-lg font-semibold text-slate-900">What causes it</h2>
+      <p class="mt-2 text-slate-600">{entry.cause}</p>
+    </div>
+
+    <div class="mt-8">
+      <h2 class="text-lg font-semibold text-slate-900">What to check before calling</h2>
+      <ul class="mt-3 space-y-2">
+        {entry.diySteps.map((step) => (
+          <li class="flex items-start gap-2 text-sm text-slate-700">
+            <span class="mt-1 text-blue-600">&#10003;</span>
+            {step}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="mt-12 rounded-lg bg-slate-900 p-8 text-center">
+      <h2 class="text-xl font-semibold text-white">Still showing {entry.code}?</h2>
+      <p class="mt-2 text-slate-300">
+        Same-day diagnosis and repair across Las Vegas, Henderson, and Summerlin. {site.serviceCallFee} service call, waived with repair.
+      </p>
+      <div class="mt-4 flex flex-wrap justify-center gap-4">
+        <a href={site.phoneHref} class="inline-block rounded-md bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-500">
+          Call {site.phoneDisplay}
+        </a>
+        <a href={`/services/${appliance.serviceId}/`} class="inline-block rounded-md border border-slate-600 px-6 py-3 font-semibold text-white hover:border-slate-400">
+          {appliance.title} Repair Details
+        </a>
+      </div>
+    </div>
+
+    <a href={`/error-codes/${appliance.slug}/`} class="mt-8 inline-block text-sm font-semibold text-blue-700 hover:underline">
+      &larr; All {appliance.title} error codes
+    </a>
+  </article>
+</Layout>
