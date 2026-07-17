@@ -21,6 +21,8 @@ export const site = {
     'North Las Vegas',
     'Summerlin',
     'Green Valley',
+    'Spring Valley',
+    'Enterprise',
   ],
   brandsShort: ['Samsung', 'GE', 'Whirlpool', 'Maytag', 'Bosch', 'LG', 'Wolf', 'Thermador', 'Sub-Zero', 'Viking'],
   discounts: ['$10 off for mentioning our website', 'Military & veteran discounts available'],

@@ -35,6 +35,15 @@ const breadcrumbItems = [
     </div>
 
     <div class="mt-10">
+      <h2 class="text-xl font-semibold text-slate-900">ZIP codes we serve in {entry.data.name}</h2>
+      <p class="mt-3 flex flex-wrap gap-2 text-sm text-slate-600">
+        {entry.data.zipCodes.map((zip) => (
+          <span class="rounded-md border border-slate-200 px-2.5 py-1 font-mono">{zip}</span>
+        ))}
+      </p>
+    </div>
+
+    <div class="mt-10">
       <h2 class="text-xl font-semibold text-slate-900">What we repair in {entry.data.name}</h2>
       <p class="mt-3 flex flex-wrap gap-2 text-sm text-slate-600">
         {['Washers', 'Dryers', 'Refrigerators', 'Dishwashers', 'Ovens & Ranges', 'Microwaves', 'Garbage Disposals'].map((label, i) => {
