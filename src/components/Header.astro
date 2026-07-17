@@ -14,9 +14,9 @@ import { site, navLinks } from '../lib/site';
 
     <input type="checkbox" id="nav-toggle" class="peer hidden" />
 
-    <nav class="hidden items-center gap-6 text-sm font-medium text-slate-700 lg:flex">
+    <nav class="hidden items-center gap-4 text-sm font-medium text-slate-700 xl:flex">
       {navLinks.map((link) => (
-        <a href={link.href} class="hover:text-blue-700">{link.label}</a>
+        <a href={link.href} class="whitespace-nowrap hover:text-blue-700">{link.label}</a>
       ))}
     </nav>
 
@@ -29,7 +29,7 @@ import { site, navLinks } from '../lib/site';
       </a>
       <label
         for="nav-toggle"
-        class="inline-flex cursor-pointer items-center justify-center rounded-md border border-slate-300 p-2 lg:hidden"
+        class="inline-flex cursor-pointer items-center justify-center rounded-md border border-slate-300 p-2 xl:hidden"
         aria-label="Toggle menu"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -39,7 +39,7 @@ import { site, navLinks } from '../lib/site';
     </div>
   </div>
 
-  <nav class="hidden flex-col gap-1 border-t border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-700 peer-checked:flex lg:hidden">
+  <nav class="hidden flex-col gap-1 border-t border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-700 peer-checked:flex xl:hidden">
     {navLinks.map((link) => (
       <a href={link.href} class="rounded px-2 py-2 hover:bg-slate-50">{link.label}</a>
     ))}

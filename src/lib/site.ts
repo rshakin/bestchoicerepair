@@ -29,12 +29,13 @@ export const site = {
 } as const;
 
 export const navLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about/' },
+  { label: 'Brands', href: '/brands/' },
   { label: 'Services', href: '/services/' },
   { label: 'Problems', href: '/problems/' },
   { label: 'Error Codes', href: '/error-codes/' },
-  { label: 'Brands', href: '/brands/' },
   { label: 'Locations', href: '/locations/' },
-  { label: 'About', href: '/about/' },
   { label: 'Reviews', href: '/reviews/' },
   { label: 'Contact', href: '/contact/' },
 ] as const;
