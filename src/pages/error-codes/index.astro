@@ -1,0 +1,48 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ApplianceIcon from '../../components/ApplianceIcon.astro';
+import { site } from '../../lib/site';
+import { applianceColor } from '../../lib/icons';
+import { errorCodes } from '../../lib/errorCodes';
+---
+
+<Layout
+  title={`Appliance Error Codes | ${site.name}`}
+  description="What your washer, dryer, refrigerator, dishwasher, oven, range, or microwave error code means, common causes, and when to call a technician in Las Vegas."
+>
+  <Breadcrumbs items={[{ name: 'Home', url: '/' }, { name: 'Error Codes', url: '/error-codes/' }]} />
+
+  <section class="mx-auto max-w-6xl px-4 py-12">
+    <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl">Appliance Error Codes</h1>
+    <p class="mt-3 max-w-2xl text-slate-600">
+      A blinking code on your display usually points to a specific part or system. Pick your appliance below to see
+      what the most common codes mean by brand, and what typically causes them.
+    </p>
+
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {errorCodes.map((appliance) => {
+        const codeCount = appliance.brands.reduce((sum, b) => sum + b.codes.length, 0);
+        return (
+          <a
+            href={`/error-codes/${appliance.slug}/`}
+            class="flex gap-4 rounded-lg border border-slate-200 p-6 transition hover:border-blue-300 hover:shadow-md"
+          >
+            <span class={`inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-lg ${applianceColor(appliance.slug).bg} ${applianceColor(appliance.slug).text}`}>
+              <ApplianceIcon name={appliance.slug} />
+            </span>
+            <div>
+              <h2 class="font-semibold text-slate-900">{appliance.title} Codes</h2>
+              <p class="mt-1 text-sm text-slate-600">{codeCount} codes across {appliance.brands.length} brand groups</p>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+
+    <p class="mt-10 text-sm text-slate-500">
+      Codes vary by model year and can look different across similar-looking machines. If you're not sure what
+      you're seeing, call us — our technicians carry the diagnostic tools to read the exact fault.
+    </p>
+  </section>
+</Layout>

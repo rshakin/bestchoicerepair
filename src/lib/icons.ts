@@ -17,7 +17,7 @@ export function applianceColor(name: string) {
   return colors[applianceSlug(name)] ?? { bg: 'bg-blue-50', text: 'text-blue-700' };
 }
 
-const withPhoto = new Set(['washer', 'dryer', 'refrigerator', 'dishwasher', 'oven', 'microwave']);
+const withPhoto = new Set(['washer', 'dryer', 'refrigerator', 'dishwasher', 'oven', 'microwave', 'disposal']);
 
 export function applianceImage(name: string) {
   const slug = applianceSlug(name);
