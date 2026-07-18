@@ -44,11 +44,14 @@ export const site = {
     'U-Line',
   ],
   discounts: ['$10 off for mentioning our website', 'Military & veteran discounts available'],
-  // TODO: add the real Google Business Profile, Yelp, and social media
-  // URLs here once available — powers the LocalBusiness schema's `sameAs`,
-  // which helps Google tie this site to the same business on other
-  // platforms (matters for local pack ranking / knowledge panel).
-  sameAs: [] as string[],
+  // TODO: add real Yelp/Facebook/Instagram profile URLs once available —
+  // these feed the LocalBusiness schema's `sameAs`, which helps Google tie
+  // this site to the same business on other platforms (matters for local
+  // pack ranking / knowledge panel).
+  sameAs: ['https://www.google.com/maps/place/?q=place_id:ChIJr6hy9_fpyIARHGI-OhFqvts'] as string[],
+  googleReviewUrl: 'https://g.page/r/CRxiPjoRar7bEBM/review',
+  googleRating: 4.9,
+  googleReviewCount: 116,
 } as const;
 
 // Placeholder platform homepages until we have this business's actual profile

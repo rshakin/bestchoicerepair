@@ -1,10 +1,12 @@
 import { site } from './site';
 
-// NOTE: address, priceRange precision, and aggregateRating are intentionally
-// left out until the business supplies real, verifiable values (street
-// address, license #, actual review counts/ratings). Publishing fabricated
-// address or rating data in structured data violates Google's guidelines
-// and can trigger a manual action — fill these in only with real data.
+// NOTE: address and priceRange precision are intentionally left out until
+// the business supplies real, verifiable values (street address, license #).
+// aggregateRating below is real, pulled from the verified Google Business
+// Profile as of 2026-07-18 — update these two numbers if they drift instead
+// of leaving them stale. Publishing fabricated address or rating data in
+// structured data violates Google's guidelines and can trigger a manual
+// action — never put a placeholder/estimated number here.
 export function localBusinessSchema() {
   return {
     '@context': 'https://schema.org',
@@ -19,6 +21,12 @@ export function localBusinessSchema() {
       name: city,
     })),
     ...(site.sameAs.length > 0 ? { sameAs: site.sameAs } : {}),
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '116',
+      bestRating: '5',
+    },
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
@@ -34,6 +42,27 @@ export function localBusinessSchema() {
       },
     ],
   };
+}
+
+// Real reviews only — sourced verbatim from the business's Google profile.
+// Never fabricate a review or edit a reviewer's wording.
+export function reviewSchema(reviews: { author: string; rating: number; date?: string; text: string }[]) {
+  return reviews.map((r) => ({
+    '@context': 'https://schema.org',
+    '@type': 'Review',
+    itemReviewed: {
+      '@type': 'HomeAndConstructionBusiness',
+      name: site.name,
+    },
+    author: { '@type': 'Person', name: r.author },
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: r.rating,
+      bestRating: 5,
+    },
+    ...(r.date ? { datePublished: r.date } : {}),
+    reviewBody: r.text,
+  }));
 }
 
 export function breadcrumbSchema(items: { name: string; url: string }[]) {
