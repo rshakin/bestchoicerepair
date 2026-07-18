@@ -14,12 +14,6 @@ const reviews = [
     text: "Best Choice Repair is an amazing appliance repair company, I used them multiple time and it always been it always been a great experience. I highly recommend this company for any appliance repair and will definitely use them again.",
   },
   {
-    author: 'Anastasia Pawloski',
-    rating: 5,
-    date: '2024-07-25',
-    text: 'Robert took my phone call this morning, as our fridge and freezer were not cooling, and was incredibly personable and swift to help! He was able to work in a time frame that fit our busy schedule and was quick to determine what needed to be replaced and repaired. Very professional and informative, our family is so grateful to have found this company!',
-  },
-  {
     author: 'Shandi Lamb',
     rating: 5,
     text: 'These guys are amazing. They came out after hours to take care of my refrigerator. Rob and Mike are great guys that earned my trust and business. I called them on Friday night at 8 pm and they came out and fixed my GE on the spot. GREAT Service.',
@@ -40,14 +34,31 @@ const reviews = [
     rating: 5,
     text: 'Robert was great. He helped diagnose my frig. I got 975.00 from achosa warranty for a new frig. Yay Robert!',
   },
+  {
+    author: 'Terrell Harris',
+    rating: 5,
+    text: 'I had an appointment set for Saturday and the repair man Robert showed up a day early Diagnosed the problem within minutes and ordered the part. He showed up the next day fixed my refrigerator in about 15 minutes. He was very professional and had a great personality',
+  },
 ];
+
+// Featured out front — same-day urgency plus real warmth, echoes the
+// homepage's "same-day" promise.
+const featured = {
+  author: 'Anastasia Pawloski',
+  rating: 5,
+  date: '2024-07-25',
+  text: 'Robert took my phone call this morning, as our fridge and freezer were not cooling, and was incredibly personable and swift to help! He was able to work in a time frame that fit our busy schedule and was quick to determine what needed to be replaced and repaired. Very professional and informative, our family is so grateful to have found this company!',
+};
 
 const reviewLinks = [
   { label: 'See us on Google', href: site.googleReviewUrl },
   { label: 'See us on Yelp', href: 'https://www.yelp.com/biz/best-choice-repair-north-las-vegas' },
 ];
 
-const schema = [breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Reviews', url: '/reviews/' }]), ...reviewSchema(reviews)];
+const schema = [
+  breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Reviews', url: '/reviews/' }]),
+  ...reviewSchema([featured, ...reviews]),
+];
 ---
 
 <Layout
@@ -55,58 +66,101 @@ const schema = [breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Reviews',
   description="See what customers say about our appliance repair service in Las Vegas, or leave us a review on Google or Yelp."
   schema={schema}
 >
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500;1,9..144,600&display=swap" rel="stylesheet" />
+  </Fragment>
+
   <Breadcrumbs items={[{ name: 'Home', url: '/' }, { name: 'Reviews', url: '/reviews/' }]} />
 
-  <section class="mx-auto max-w-3xl px-4 py-12">
-    <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">Customer Reviews</h1>
-
-    <div class="mt-4 flex items-center gap-2">
-      <div class="flex text-amber-400">
-        {Array.from({ length: 5 }).map(() => (
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.2 1.3-6.6-4.9-4.6 6.6-.8L12 2.5z" />
-          </svg>
-        ))}
-      </div>
-      <p class="font-semibold text-slate-900 dark:text-white">{site.googleRating} out of 5</p>
-      <p class="text-sm text-slate-500 dark:text-slate-400">({site.googleReviewCount} Google reviews)</p>
-    </div>
-
-    <p class="mt-4 text-slate-600 dark:text-slate-400">
-      We're proud of the work we do for homeowners across the Las Vegas valley. Here's a handful of what customers
-      have said on Google — or let us know how we did after your repair.
-    </p>
-
-    <div class="mt-8 flex flex-wrap gap-4">
-      {reviewLinks.map((link) => (
-        <a
-          href={link.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="rounded-md border border-slate-300 px-5 py-3 font-semibold text-slate-700 hover:border-blue-300 hover:text-blue-700 dark:border-slate-700 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-400"
-        >
-          {link.label}
-        </a>
-      ))}
-    </div>
-
-    <div class="mt-12 grid gap-4 sm:grid-cols-2">
-      {reviews.map((review) => (
-        <div class="rounded-lg border border-slate-200 p-5 dark:border-slate-800">
-          <div class="flex text-amber-400">
-            {Array.from({ length: review.rating }).map(() => (
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+  <section class="border-b border-slate-800 bg-slate-900">
+    <div class="mx-auto max-w-5xl px-4 py-14 text-center">
+      <p class="text-sm font-semibold uppercase tracking-wide text-blue-400">What Las Vegas Homeowners Say</p>
+      <div class="mt-4 flex items-center justify-center gap-4">
+        <span class="text-6xl font-medium text-white sm:text-7xl" style="font-family: 'Fraunces', serif; font-style: italic;">
+          {site.googleRating}
+        </span>
+        <div class="text-left">
+          <div class="flex gap-0.5 text-amber-400">
+            {Array.from({ length: 5 }).map(() => (
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.2 1.3-6.6-4.9-4.6 6.6-.8L12 2.5z" />
               </svg>
             ))}
           </div>
-          <p class="mt-3 text-sm text-slate-600 dark:text-slate-400">{review.text}</p>
-          <p class="mt-3 text-sm font-semibold text-slate-900 dark:text-white">{review.author}</p>
+          <p class="mt-1 text-sm text-slate-400">{site.googleReviewCount} Google reviews</p>
+        </div>
+      </div>
+
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        {reviewLinks.map((link) => (
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-full border border-slate-700 bg-slate-800/50 px-5 py-2.5 text-sm font-medium text-slate-200 transition hover:border-blue-500 hover:bg-slate-800 hover:text-white"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-4 py-14">
+    <div class="relative mx-auto max-w-2xl text-center">
+      <span
+        class="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 text-[9rem] leading-none text-slate-100 select-none dark:text-slate-800/60"
+        style="font-family: 'Fraunces', serif;"
+        aria-hidden="true"
+      >
+        &rdquo;
+      </span>
+      <p
+        class="relative text-2xl leading-snug text-slate-900 sm:text-3xl dark:text-white"
+        style="font-family: 'Fraunces', serif; font-style: italic; font-weight: 500;"
+      >
+        {featured.text}
+      </p>
+      <div class="mt-6 flex items-center justify-center gap-2">
+        <div class="flex text-amber-400">
+          {Array.from({ length: featured.rating }).map(() => (
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.2 1.3-6.6-4.9-4.6 6.6-.8L12 2.5z" />
+            </svg>
+          ))}
+        </div>
+        <p class="text-sm font-semibold text-slate-900 dark:text-white">{featured.author}</p>
+      </div>
+    </div>
+
+    <div class="mt-16 columns-1 gap-5 sm:columns-2">
+      {reviews.map((review) => (
+        <div class="mb-5 break-inside-avoid rounded-xl border border-slate-200 bg-white p-6 transition hover:border-blue-200 hover:shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:hover:border-blue-900">
+          <span
+            class="text-3xl text-blue-200 select-none dark:text-slate-700"
+            style="font-family: 'Fraunces', serif;"
+            aria-hidden="true"
+          >
+            &rdquo;
+          </span>
+          <p class="-mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{review.text}</p>
+          <div class="mt-4 flex items-center justify-between">
+            <p class="text-sm font-semibold text-slate-900 dark:text-white">{review.author}</p>
+            <div class="flex text-amber-400">
+              {Array.from({ length: review.rating }).map(() => (
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.2 1.3-6.6-4.9-4.6 6.6-.8L12 2.5z" />
+                </svg>
+              ))}
+            </div>
+          </div>
         </div>
       ))}
     </div>
 
-    <div class="mt-12 rounded-lg bg-slate-900 p-8 text-center">
+    <div class="mt-6 rounded-xl bg-slate-900 p-8 text-center">
       <h2 class="text-xl font-semibold text-white">Just had a repair with us?</h2>
       <p class="mt-2 text-slate-300">We'd appreciate a review — it helps other Las Vegas homeowners find us.</p>
       <a href={site.phoneHref} class="mt-4 inline-block rounded-md bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-500">

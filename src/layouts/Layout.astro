@@ -39,6 +39,7 @@ const pageSchema = schema
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="canonical" href={canonicalURL} />
     {noIndex && <meta name="robots" content="noindex, nofollow" />}
+    <slot name="head" />
 
     <script is:inline>
       const theme = localStorage.getItem('theme');
