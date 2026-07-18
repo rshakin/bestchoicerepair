@@ -11,7 +11,7 @@ commonIssues:
   - Loud banging, grinding, or thumping during the spin cycle
   - Washer stops mid-cycle or won't fill with water
   - Error codes on digital display models
-relatedProblems: ['washer-wont-drain', 'washer-wont-spin']
+relatedProblems: ['washer-wont-drain', 'washer-wont-spin', 'washer-wont-start', 'washer-leaking']
 ---
 
 Whether it's a top-load, front-load, or stackable unit, our technicians repair washers from Samsung, GE, Whirlpool, Maytag, Bosch, and other major brands. Most washer problems — drainage failures, worn belts, bad pumps, faulty lid switches, or electronic control issues — can be diagnosed and fixed in a single visit.

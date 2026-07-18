@@ -11,7 +11,7 @@ commonIssues:
   - Water pooling under or inside the fridge
   - Refrigerator running constantly or making loud noises
   - Fridge is warm but the compressor is running
-relatedProblems: ['refrigerator-not-cooling', 'ice-maker-not-working']
+relatedProblems: ['refrigerator-not-cooling', 'ice-maker-not-working', 'refrigerator-leaking-water', 'refrigerator-running-loud']
 ---
 
 Refrigerators are the appliance you can least afford to be without, which is why we prioritize same-day and next-day refrigerator calls. We service standard, French door, side-by-side, and built-in refrigerators from Samsung, GE, Whirlpool, Maytag, Bosch, Wolf, and Thermador.

@@ -11,7 +11,7 @@ commonIssues:
   - Dryer shuts off after a few minutes
   - Burning smell or overheating
   - Excessive noise or vibration
-relatedProblems: ['dryer-not-heating', 'dryer-squeaking']
+relatedProblems: ['dryer-not-heating', 'dryer-squeaking', 'dryer-wont-start', 'dryer-overheating-shuts-off']
 ---
 
 We repair gas and electric dryers from every major manufacturer. Most no-heat and no-turn complaints come down to a worn heating element, thermal fuse, drive belt, or blower — all repairs our technicians handle on the first visit in most cases.

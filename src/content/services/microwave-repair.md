@@ -11,7 +11,7 @@ commonIssues:
   - Buttons or keypad not responding
   - Microwave running but display is dark
   - Door won't latch or close properly
-relatedProblems: ['microwave-not-heating']
+relatedProblems: ['microwave-not-heating', 'microwave-turntable-not-spinning', 'microwave-sparking', 'microwave-buttons-not-working']
 ---
 
 We repair built-in, over-the-range, and countertop microwaves from all major brands. No-heat complaints are commonly caused by a failed magnetron, high-voltage diode, or door interlock switch — components our technicians are equipped to test and replace safely on-site.

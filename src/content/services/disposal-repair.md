@@ -11,7 +11,7 @@ commonIssues:
   - Disposal won't turn on at all
   - Frequent breaker trips when running
   - Unusual grinding noise or vibration
-relatedProblems: ['garbage-disposal-humming']
+relatedProblems: ['garbage-disposal-humming', 'garbage-disposal-leaking', 'garbage-disposal-wont-turn-on']
 ---
 
 A humming disposal usually means a jam or a stuck impeller — often a quick fix. A disposal that won't turn on at all can point to a tripped reset button, bad switch, or failed motor. We diagnose the issue on-site and repair or replace the unit as needed.

@@ -11,7 +11,7 @@ commonIssues:
   - Won't start or won't fill with water
   - Loud grinding or humming noise during cycles
   - Door latch or control panel not responding
-relatedProblems: ['dishwasher-not-draining']
+relatedProblems: ['dishwasher-not-draining', 'dishwasher-not-cleaning-dishes', 'dishwasher-leaking', 'dishwasher-wont-start']
 ---
 
 Dishwasher issues are almost always traceable to a clogged drain pump, worn spray arm, failing water inlet valve, or a door latch that's no longer sealing correctly. Our technicians repair built-in and portable dishwashers from all major brands, including premium panel-ready models.

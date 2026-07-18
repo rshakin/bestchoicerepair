@@ -11,7 +11,7 @@ commonIssues:
   - Self-clean cycle not working or locking the door
   - Control panel unresponsive or showing error codes
   - Broiler not working
-relatedProblems: ['oven-not-heating']
+relatedProblems: ['oven-not-heating', 'oven-uneven-baking', 'oven-burner-wont-light', 'oven-self-clean-not-working']
 ---
 
 We repair freestanding and built-in ranges, wall ovens, and cooktops — gas, electric, and dual-fuel — from Samsung, GE, Whirlpool, Maytag, Bosch, Wolf, and Thermador. Heating problems usually point to a failed bake or broil element, faulty igniter, or a bad control board, all of which we can typically diagnose and repair in one visit.
