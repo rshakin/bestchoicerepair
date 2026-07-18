@@ -4,7 +4,7 @@ import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import ApplianceIcon from '../components/ApplianceIcon.astro';
 import BrandMark from '../components/BrandMark.astro';
-import { site } from '../lib/site';
+import { site, brandSlug } from '../lib/site';
 import { applianceColor, applianceImage } from '../lib/icons';
 import heroTechnician from '../assets/hero-technician.png';
 
@@ -133,7 +133,7 @@ const featuredProblems = featuredProblemIds
     </p>
     <div class="mt-6 flex flex-wrap gap-3">
       {site.brandsShort.map((brand) => (
-        <a href={`/brands/${brand.toLowerCase()}/`} class="group">
+        <a href={`/brands/${brandSlug(brand)}/`} class="group">
           <BrandMark name={brand} />
         </a>
       ))}

@@ -1,3 +1,11 @@
+export function brandSlug(name: string): string {
+  return name
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/\s+/g, '-');
+}
+
 export const site = {
   name: 'Best Choice Repair',
   tagline: 'More care + Less cost = Customer satisfaction!',
@@ -29,7 +37,12 @@ export const site = {
     'Spring Valley',
     'Enterprise',
   ],
-  brandsShort: ['Samsung', 'GE', 'Whirlpool', 'Maytag', 'Bosch', 'LG', 'Wolf', 'Thermador', 'Sub-Zero', 'Viking'],
+  brandsShort: [
+    'Samsung', 'GE', 'Whirlpool', 'Maytag', 'Bosch', 'LG', 'Wolf', 'Thermador', 'Sub-Zero', 'Viking',
+    'Admiral', 'AEG', 'Amana', 'Dacor', 'Electrolux', 'Frigidaire', 'Inglis', 'JennAir', 'KitchenAid',
+    'Magic Chef', 'Monogram', 'Siemens', 'Thor Kitchen', 'Café', 'Cove', 'Marvel', 'Miele', 'Roper',
+    'U-Line', 'Ultraline Professional',
+  ],
   discounts: ['$10 off for mentioning our website', 'Military & veteran discounts available'],
   // TODO: add the real Google Business Profile, Yelp, and social media
   // URLs here once available — powers the LocalBusiness schema's `sameAs`,

@@ -5,7 +5,7 @@ import Layout from '../../layouts/Layout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ApplianceIcon from '../../components/ApplianceIcon.astro';
 import BrandMark from '../../components/BrandMark.astro';
-import { site } from '../../lib/site';
+import { site, brandSlug } from '../../lib/site';
 import { serviceSchema, breadcrumbSchema } from '../../lib/schema';
 import { applianceColor, applianceImage } from '../../lib/icons';
 import { errorCodes } from '../../lib/errorCodes';
@@ -105,7 +105,7 @@ const breadcrumbItems = [
       <h2 class="text-xl font-semibold text-slate-900 dark:text-white">Brands we service</h2>
       <div class="mt-3 flex flex-wrap gap-2">
         {site.brandsShort.map((brand) => (
-          <a href={`/brands/${brand.toLowerCase()}/`} class="group">
+          <a href={`/brands/${brandSlug(brand)}/`} class="group">
             <BrandMark name={brand} size="sm" />
           </a>
         ))}
