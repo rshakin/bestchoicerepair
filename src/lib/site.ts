@@ -40,8 +40,8 @@ export const site = {
   brandsShort: [
     'Samsung', 'GE', 'Whirlpool', 'Maytag', 'Bosch', 'LG', 'Wolf', 'Thermador', 'Sub-Zero', 'Viking',
     'Admiral', 'AEG', 'Amana', 'Dacor', 'Electrolux', 'Frigidaire', 'Inglis', 'JennAir', 'KitchenAid',
-    'Magic Chef', 'Monogram', 'Siemens', 'Thor Kitchen', 'Café', 'Cove', 'Marvel', 'Miele', 'Roper',
-    'U-Line', 'Ultraline Professional',
+    'Magic Chef', 'Monogram', 'Thor Kitchen', 'Café', 'Cove', 'Miele', 'Roper',
+    'U-Line',
   ],
   discounts: ['$10 off for mentioning our website', 'Military & veteran discounts available'],
   // TODO: add the real Google Business Profile, Yelp, and social media
