@@ -39,7 +39,7 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer class="border-t border-slate-200 bg-slate-900 text-slate-300 dark:border-slate-800">
-  <div class="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:grid-cols-2 lg:grid-cols-5">
+  <div class="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:grid-cols-2 lg:grid-cols-5">
     <div class="lg:col-span-2">
       <p class="text-lg font-bold text-white">{site.name}</p>
       <p class="mt-2 text-sm text-slate-400">{site.tagline}</p>
@@ -56,6 +56,15 @@ const currentYear = new Date().getFullYear();
           <li>{h.days}: <span class="text-slate-300">{h.time}</span></li>
         ))}
       </ul>
+
+      <div class="mt-6 inline-flex rounded-lg border border-slate-700 bg-slate-800/50 p-3">
+        <img
+          src="/badges/expertise-2026.png"
+          alt="Expertise.com: Best Home Appliance Repair Services in Las Vegas, 2026"
+          class="h-24 w-auto"
+          loading="lazy"
+        />
+      </div>
     </div>
 
     <div>
@@ -87,7 +96,7 @@ const currentYear = new Date().getFullYear();
   </div>
 
   <div class="border-t border-slate-800">
-    <div class="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-4 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+    <div class="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-4 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
       <p>&copy; {currentYear} {site.name}. All rights reserved.</p>
       <p>Licensed & insured &middot; {site.warranty}</p>
     </div>

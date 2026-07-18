@@ -32,7 +32,7 @@ const steps = [
   <Breadcrumbs items={[{ name: 'Home', url: '/' }, { name: 'About', url: '/about/' }]} />
 
   <article class="mx-auto max-w-3xl px-4 py-12">
-    <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl dark:text-white">About {site.name}</h1>
+    <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">About {site.name}</h1>
 
     <div class="prose prose-slate mt-8 max-w-none dark:prose-invert">
       <p>
@@ -53,7 +53,7 @@ const steps = [
     </div>
 
     <div class="mt-14">
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Why homeowners choose us</h2>
+      <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl lg:text-4xl dark:text-white">Why homeowners choose us</h2>
       <div class="mt-6 grid gap-5 sm:grid-cols-2">
         {whyUs.map((item) => (
           <div class="rounded-lg border border-slate-200 p-5 dark:border-slate-800">
@@ -65,7 +65,7 @@ const steps = [
     </div>
 
     <div class="mt-14">
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white">How it works</h2>
+      <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl lg:text-4xl dark:text-white">How it works</h2>
       <div class="mt-6 grid gap-5 sm:grid-cols-2">
         {steps.map((item) => (
           <div class="flex gap-4">
@@ -82,7 +82,7 @@ const steps = [
     </div>
 
     <div class="mt-14">
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white">What we repair</h2>
+      <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl lg:text-4xl dark:text-white">What we repair</h2>
       <div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
         {services.map((service) => (
           <a href={`/services/${service.id}/`} class="flex flex-col items-center gap-2 rounded-lg border border-slate-200 p-4 text-center transition hover:border-blue-300 dark:border-slate-800 dark:hover:border-blue-700">
