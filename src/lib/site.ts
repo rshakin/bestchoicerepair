@@ -57,7 +57,7 @@ export const site = {
 // Placeholder platform homepages until we have this business's actual profile
 // URLs on each — swap each href for the real profile link once available.
 export const socialLinks = [
-  { label: 'Yelp', icon: 'yelp', href: 'https://www.yelp.com' },
+  { label: 'Yelp', icon: 'yelp', href: 'https://www.yelp.com/biz/best-choice-repair-north-las-vegas' },
   { label: 'Facebook', icon: 'facebook', href: 'https://www.facebook.com' },
   { label: 'Instagram', icon: 'instagram', href: 'https://www.instagram.com' },
   { label: 'LinkedIn', icon: 'linkedin', href: 'https://www.linkedin.com' },
