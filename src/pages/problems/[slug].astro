@@ -19,7 +19,7 @@ const locations = (await getCollection('locations')).sort((a, b) => a.data.order
 
 const breadcrumbItems = [
   { name: 'Home', url: '/' },
-  { name: 'Problems', url: '/problems/' },
+  { name: 'Self-Help', url: '/problems/' },
   { name: entry.data.title, url: `/problems/${entry.id}/` },
 ];
 
