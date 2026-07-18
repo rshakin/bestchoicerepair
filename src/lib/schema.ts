@@ -95,12 +95,19 @@ export function serviceSchema(opts: { name: string; description: string; url: st
   };
 }
 
-export function locationServiceSchema(opts: { city: string; description: string; url: string; lat: number; lng: number }) {
+export function locationServiceSchema(opts: {
+  city: string;
+  description: string;
+  url: string;
+  lat: number;
+  lng: number;
+  serviceType?: string;
+}) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    serviceType: 'Appliance Repair',
-    name: `Appliance Repair in ${opts.city} — ${site.name}`,
+    serviceType: opts.serviceType ?? 'Appliance Repair',
+    name: `${opts.serviceType ?? 'Appliance Repair'} in ${opts.city} — ${site.name}`,
     description: opts.description,
     url: opts.url,
     provider: {

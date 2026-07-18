@@ -31,3 +31,20 @@ const images: Record<string, ImageMetadata> = { washer, dryer, refrigerator, dis
 export function applianceImage(name: string): ImageMetadata | null {
   return images[applianceSlug(name)] ?? null;
 }
+
+// Short, natural-language noun for a given appliance icon slug — e.g. for
+// "What's going on with your ___?" or "we repair ___s in {city}", where the
+// full service title ("Garbage Disposal Repair") reads badly.
+const shortNames: Record<string, string> = {
+  washer: 'washer',
+  dryer: 'dryer',
+  refrigerator: 'refrigerator',
+  dishwasher: 'dishwasher',
+  oven: 'oven',
+  microwave: 'microwave',
+  disposal: 'garbage disposal',
+};
+
+export function applianceShortName(name: string): string {
+  return shortNames[applianceSlug(name)] ?? name.toLowerCase();
+}

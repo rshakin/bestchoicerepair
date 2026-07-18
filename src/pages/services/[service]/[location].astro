@@ -1,0 +1,154 @@
+---
+import { getCollection, getEntries } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import ApplianceIcon from '../../../components/ApplianceIcon.astro';
+import { site } from '../../../lib/site';
+import { breadcrumbSchema, locationServiceSchema, faqSchema } from '../../../lib/schema';
+import { applianceColor, applianceShortName } from '../../../lib/icons';
+
+export async function getStaticPaths() {
+  const services = await getCollection('services');
+  const locations = await getCollection('locations');
+  return services.flatMap((service) =>
+    locations.map((location) => ({
+      params: { service: service.id, location: location.id },
+      props: { service, location, allLocations: locations },
+    }))
+  );
+}
+
+const { service, location, allLocations } = Astro.props;
+const applianceNoun = applianceShortName(service.data.icon);
+const relatedProblems = service.data.relatedProblems.length ? await getEntries(service.data.relatedProblems) : [];
+const otherLocations = allLocations.filter((l) => l.id !== location.id).sort((a, b) => a.data.order - b.data.order);
+const pageUrl = new URL(`/services/${service.id}/${location.id}/`, Astro.site).toString();
+
+const breadcrumbItems = [
+  { name: 'Home', url: '/' },
+  { name: 'Services', url: '/services/' },
+  { name: service.data.title, url: `/services/${service.id}/` },
+  { name: location.data.name, url: `/services/${service.id}/${location.id}/` },
+];
+
+const neighborhoodSample = location.data.neighborhoods.slice(0, 4).join(', ');
+
+const faq = faqSchema([
+  {
+    question: `How fast can you repair a ${applianceNoun} in ${location.data.name}?`,
+    answer: `Same-day and next-day appointments are available for ${applianceNoun} repair throughout ${location.data.name}. ${site.serviceCallFee} service call, waived when you move forward with the repair.`,
+  },
+  {
+    question: `What ZIP codes do you cover for ${service.data.title.toLowerCase()} in ${location.data.name}?`,
+    answer: `We serve ${location.data.zipCodes.join(', ')} and the surrounding area.`,
+  },
+  {
+    question: `Do you repair my ${applianceNoun} brand in ${location.data.name}?`,
+    answer: `Yes — we service every major brand, from everyday names to premium built-in kitchen makers, throughout ${location.data.name}.`,
+  },
+]);
+---
+
+<Layout
+  title={`${service.data.title} in ${location.data.name}, NV | ${site.name}`}
+  description={`${service.data.title} in ${location.data.name}, NV. Same-day service, ${site.serviceCallFee} service call waived with repair, 90-day warranty. Serving ${neighborhoodSample} and more.`}
+  schema={[
+    breadcrumbSchema(breadcrumbItems.map((i) => ({ ...i, url: new URL(i.url, Astro.site).toString() }))),
+    locationServiceSchema({
+      city: location.data.name,
+      description: service.data.metaDescription,
+      url: pageUrl,
+      lat: location.data.lat,
+      lng: location.data.lng,
+      serviceType: service.data.title,
+    }),
+    faq,
+  ]}
+>
+  <Breadcrumbs items={breadcrumbItems} />
+
+  <article class="mx-auto max-w-3xl px-4 py-12">
+    <div class="flex items-center gap-4">
+      <span class={`inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-lg ${applianceColor(service.data.icon).bg} ${applianceColor(service.data.icon).text}`}>
+        <ApplianceIcon name={service.data.icon} class="h-8 w-8" />
+      </span>
+      <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">{service.data.title} in {location.data.name}, NV</h1>
+    </div>
+
+    <div class="mt-4 flex flex-wrap gap-3 text-sm">
+      <span class="rounded-full bg-blue-50 px-3 py-1 font-medium text-blue-700 dark:bg-blue-950/40 dark:text-blue-400">{site.serviceCallFee} service call, waived with repair</span>
+      <span class="rounded-full bg-emerald-50 px-3 py-1 font-medium text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400">{site.warranty}</span>
+      <span class="rounded-full bg-slate-100 px-3 py-1 font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">Same-day service available</span>
+    </div>
+
+    <p class="mt-6 text-slate-600 dark:text-slate-400">
+      We repair {applianceNoun}s for homeowners throughout {location.data.name}, including {neighborhoodSample} and the
+      surrounding neighborhoods. We carry common {applianceNoun} parts on the truck, so most repairs in {location.data.name} —
+      ZIP codes {location.data.zipCodes.join(', ')} — are completed the same day, with a {site.warranty.toLowerCase()}.
+    </p>
+
+    <div class="mt-10">
+      <h2 class="text-xl font-semibold text-slate-900 dark:text-white">Common {service.data.title.toLowerCase()} issues we fix in {location.data.name}</h2>
+      <ul class="mt-4 grid gap-2 sm:grid-cols-2">
+        {service.data.commonIssues.map((issue: string) => (
+          <li class="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
+            <span class="mt-1 text-blue-600 dark:text-blue-400">&#10003;</span>
+            {issue}
+          </li>
+        ))}
+      </ul>
+      <a href={`/services/${service.id}/`} class="mt-4 inline-block text-sm font-semibold text-blue-700 hover:underline dark:text-blue-400">
+        More about our {service.data.title.toLowerCase()} &rarr;
+      </a>
+    </div>
+
+    {relatedProblems.length > 0 && (
+      <div class="mt-10">
+        <h2 class="text-xl font-semibold text-slate-900 dark:text-white">Related problems</h2>
+        <ul class="mt-4 space-y-2">
+          {relatedProblems.map((problem) => (
+            <li>
+              <a href={`/problems/${problem.id}/`} class="text-blue-700 hover:underline dark:text-blue-400">{problem.data.title}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    <div class="mt-10">
+      <h2 class="text-xl font-semibold text-slate-900 dark:text-white">Frequently asked questions</h2>
+      <div class="mt-4 space-y-4">
+        {faq.mainEntity.map((item) => (
+          <div>
+            <h3 class="font-semibold text-slate-900 dark:text-white">{item.name}</h3>
+            <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">{item.acceptedAnswer.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-10">
+      <h2 class="text-xl font-semibold text-slate-900 dark:text-white">{service.data.title} in nearby cities</h2>
+      <div class="mt-3 flex flex-wrap gap-2">
+        {otherLocations.map((l) => (
+          <a href={`/services/${service.id}/${l.id}/`} class="rounded-md border border-slate-200 px-3 py-1 text-sm text-slate-700 hover:border-blue-300 dark:border-slate-800 dark:text-slate-300 dark:hover:border-blue-700">
+            {l.data.name}
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12 rounded-lg bg-slate-900 p-8 text-center">
+      <h2 class="text-xl font-semibold text-white">Need {applianceNoun} repair in {location.data.name} today?</h2>
+      <p class="mt-2 text-slate-300">Same-day appointments available. {site.serviceCallFee} service call, waived with repair.</p>
+      <div class="mt-4 flex flex-wrap justify-center gap-3">
+        <a href={site.phoneHref} class="rounded-md bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-500">
+          Call {site.phoneDisplay}
+        </a>
+        <button type="button" data-open-booking class="rounded-md border border-slate-600 px-6 py-3 font-semibold text-white hover:border-slate-400">
+          Request Service
+        </button>
+      </div>
+    </div>
+  </article>
+</Layout>

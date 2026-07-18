@@ -2,21 +2,9 @@
 import { getCollection } from 'astro:content';
 import ApplianceIcon from './ApplianceIcon.astro';
 import { site } from '../lib/site';
-import { applianceColor } from '../lib/icons';
+import { applianceColor, applianceShortName } from '../lib/icons';
 
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
-
-// Short, natural-language noun for "What's going on with your ___?" — the
-// full service title (e.g. "Garbage Disposal Repair") reads badly there.
-const shortApplianceNames: Record<string, string> = {
-  washer: 'washer',
-  dryer: 'dryer',
-  refrigerator: 'refrigerator',
-  dishwasher: 'dishwasher',
-  oven: 'oven',
-  microwave: 'microwave',
-  disposal: 'garbage disposal',
-};
 ---
 
 <div id="booking-overlay" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-950/70 px-4 pt-4 pb-[calc(1rem+env(safe-area-inset-bottom))] backdrop-blur-sm">
@@ -50,7 +38,7 @@ const shortApplianceNames: Record<string, string> = {
               type="button"
               data-appliance-option
               data-value={service.data.title}
-              data-short-label={shortApplianceNames[service.data.icon] ?? service.data.title.toLowerCase()}
+              data-short-label={applianceShortName(service.data.icon)}
               class="flex flex-col items-center gap-2 rounded-xl border-2 border-slate-200 p-4 text-center transition hover:border-blue-300 dark:border-slate-700 dark:hover:border-blue-600"
             >
               <span class={`inline-flex h-10 w-10 items-center justify-center rounded-lg ${applianceColor(service.data.icon).bg} ${applianceColor(service.data.icon).text}`}>
