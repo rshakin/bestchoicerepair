@@ -5,6 +5,18 @@ import { site } from '../lib/site';
 import { applianceColor } from '../lib/icons';
 
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+
+// Short, natural-language noun for "What's going on with your ___?" — the
+// full service title (e.g. "Garbage Disposal Repair") reads badly there.
+const shortApplianceNames: Record<string, string> = {
+  washer: 'washer',
+  dryer: 'dryer',
+  refrigerator: 'refrigerator',
+  dishwasher: 'dishwasher',
+  oven: 'oven',
+  microwave: 'microwave',
+  disposal: 'garbage disposal',
+};
 ---
 
 <div id="booking-overlay" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-950/70 px-4 pt-4 pb-[calc(1rem+env(safe-area-inset-bottom))] backdrop-blur-sm">
@@ -38,6 +50,7 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
               type="button"
               data-appliance-option
               data-value={service.data.title}
+              data-short-label={shortApplianceNames[service.data.icon] ?? service.data.title.toLowerCase()}
               class="flex flex-col items-center gap-2 rounded-xl border-2 border-slate-200 p-4 text-center transition hover:border-blue-300 dark:border-slate-700 dark:hover:border-blue-600"
             >
               <span class={`inline-flex h-10 w-10 items-center justify-center rounded-lg ${applianceColor(service.data.icon).bg} ${applianceColor(service.data.icon).text}`}>
@@ -50,8 +63,14 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
             type="button"
             data-appliance-option
             data-value="Other"
-            class="flex flex-col items-center justify-center gap-2 rounded-xl border-2 border-slate-200 p-4 text-center transition hover:border-blue-300 dark:border-slate-700 dark:hover:border-blue-600"
+            data-short-label="appliance"
+            class="flex flex-col items-center gap-2 rounded-xl border-2 border-slate-200 p-4 text-center transition hover:border-blue-300 dark:border-slate-700 dark:hover:border-blue-600"
           >
+            <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+              </svg>
+            </span>
             <span class="text-xs font-medium text-slate-900 dark:text-white">Something else</span>
           </button>
         </div>
@@ -228,7 +247,7 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
   document.querySelectorAll('[data-appliance-option]').forEach((btn) => {
     btn.addEventListener('click', () => {
       applianceInput.value = btn.dataset.value;
-      applianceLabels.forEach((el) => { el.textContent = btn.dataset.value.toLowerCase(); });
+      applianceLabels.forEach((el) => { el.textContent = btn.dataset.shortLabel; });
       document.querySelectorAll('[data-appliance-option]').forEach((b) => b.classList.remove('border-blue-600', 'bg-blue-50', 'dark:bg-blue-950/30'));
       btn.classList.add('border-blue-600', 'bg-blue-50', 'dark:bg-blue-950/30');
       goTo(1);
