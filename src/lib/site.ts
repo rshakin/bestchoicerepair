@@ -15,11 +15,7 @@ export const site = {
   phoneHrefLocal: 'tel:+17027269648',
   smsHref: 'sms:+17022504210',
   email: 'repair@bestchoicerepair.com',
-  // TODO: point this at the deployed dispatch-app once it's live (e.g.
-  // https://dispatch.bestchoicerepair.com/api/public/booking-requests).
-  // Until then, submissions will fail and the form falls back to showing
-  // the phone number instead of a fake success message.
-  bookingApiUrl: '',
+  bookingApiUrl: 'https://dispatch.bestchoicerepair.com/api/public/booking-requests',
   serviceCallFee: '$89',
   warranty: '90-Day Warranty on Parts & Labor',
   hours: [
