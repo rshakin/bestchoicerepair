@@ -13,7 +13,7 @@ export const site = {
   phoneHref: 'tel:+18005012023',
   phoneDisplayLocal: '(702) 726-9648',
   phoneHrefLocal: 'tel:+17027269648',
-  smsHref: 'sms:+18005012023',
+  smsHref: 'sms:+17022504210',
   email: 'repair@bestchoicerepair.com',
   // TODO: point this at the deployed dispatch-app once it's live (e.g.
   // https://dispatch.bestchoicerepair.com/api/public/booking-requests).
