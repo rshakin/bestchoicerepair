@@ -23,8 +23,8 @@ const logos: Record<string, string> = {
   maytag: '/brands/maytag.svg',
   thermador: '/brands/thermador.svg',
   viking: '/brands/viking.svg',
-  'sub-zero': '/brands/sub-zero.png',
-  wolf: '/brands/wolf.png',
+  'sub-zero': '/brands/sub-zero.webp',
+  wolf: '/brands/wolf.webp',
   admiral: '/brands/admiral.svg',
   aeg: '/brands/aeg.svg',
   amana: '/brands/amana.svg',
@@ -37,11 +37,11 @@ const logos: Record<string, string> = {
   'magic-chef': '/brands/magic-chef.svg',
   monogram: '/brands/monogram.svg',
   'thor-kitchen': '/brands/thor-kitchen.svg',
-  cafe: '/brands/cafe.png',
-  cove: '/brands/cove.png',
-  miele: '/brands/miele.png',
-  roper: '/brands/roper.png',
-  'u-line': '/brands/u-line.png',
+  cafe: '/brands/cafe.webp',
+  cove: '/brands/cove.webp',
+  miele: '/brands/miele.webp',
+  roper: '/brands/roper.webp',
+  'u-line': '/brands/u-line.webp',
 };
 
 const slug = brandSlug(name);
@@ -64,6 +64,10 @@ const textSize = textSizes[size];
     <img
       src={logo}
       alt={name}
+      width="144"
+      height="64"
+      loading="lazy"
+      decoding="async"
       draggable="false"
       class="max-h-full max-w-full select-none object-contain"
       oncontextmenu="return false"
