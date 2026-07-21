@@ -150,9 +150,13 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
       </div>
       <div data-step="error" class="booking-step hidden text-center">
         <h2 class="text-xl font-bold text-slate-900 dark:text-white">We couldn't send that automatically.</h2>
-        <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
-          Please call or text us instead — <a href={site.phoneHref} class="font-semibold text-blue-700 hover:underline dark:text-blue-400">{site.phoneDisplay}</a>.
-        </p>
+        <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Please give us a call instead and we'll get you booked.</p>
+        <a
+          href={site.phoneHref}
+          class="mt-6 inline-flex w-full items-center justify-center rounded-lg bg-blue-700 px-6 py-2.5 text-sm font-semibold text-white hover:bg-blue-800"
+        >
+          Call {site.phoneDisplay}
+        </a>
       </div>
 
       <div id="booking-nav" class="mt-6 flex items-center justify-between gap-3">
