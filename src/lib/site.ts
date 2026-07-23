@@ -9,10 +9,13 @@ export function brandSlug(name: string): string {
 export const site = {
   name: 'Best Choice Repair',
   tagline: 'More care + Less cost = Customer satisfaction!',
-  phoneDisplay: '(800) 501-2023',
-  phoneHref: 'tel:+18005012023',
-  phoneDisplayLocal: '(702) 726-9648',
-  phoneHrefLocal: 'tel:+17027269648',
+  // Primary number everywhere it's displayed — matches the Google Business
+  // Profile listing, which is what local-pack/NAP consistency is judged
+  // against. The 800 line is secondary, shown alongside it in the footer.
+  phoneDisplay: '(702) 726-9648',
+  phoneHref: 'tel:+17027269648',
+  phoneDisplayTollFree: '(800) 501-2023',
+  phoneHrefTollFree: 'tel:+18005012023',
   smsHref: 'sms:+17022504210',
   email: 'repair@bestchoicerepair.com',
   bookingApiUrl: 'https://dispatch.bestchoicerepair.com/api/public/booking-requests',

@@ -14,9 +14,7 @@ export function localBusinessSchema() {
     name: site.name,
     description:
       'Appliance repair serving the Las Vegas metro area: washers, dryers, refrigerators, dishwashers, ovens, ranges, microwaves, and garbage disposals.',
-    // Local 702 number, not the 800 toll-free line — a local area code is a
-    // stronger geo-relevance signal for Las Vegas local-pack ranking.
-    telephone: site.phoneHrefLocal.replace('tel:', ''),
+    telephone: site.phoneHref.replace('tel:', ''),
     email: site.email,
     areaServed: site.serviceAreaCities.map((city) => ({
       '@type': 'City',
@@ -91,7 +89,7 @@ export function serviceSchema(opts: { name: string; description: string; url: st
     provider: {
       '@type': 'HomeAndConstructionBusiness',
       name: site.name,
-      telephone: site.phoneHrefLocal.replace('tel:', ''),
+      telephone: site.phoneHref.replace('tel:', ''),
     },
     areaServed: site.serviceAreaCities.map((city) => ({ '@type': 'City', name: city })),
   };
@@ -115,7 +113,7 @@ export function locationServiceSchema(opts: {
     provider: {
       '@type': 'HomeAndConstructionBusiness',
       name: site.name,
-      telephone: site.phoneHrefLocal.replace('tel:', ''),
+      telephone: site.phoneHref.replace('tel:', ''),
     },
     areaServed: {
       '@type': 'City',
