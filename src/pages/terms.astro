@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { site } from '../lib/site';
+
+const effectiveDate = 'July 24, 2026';
+---
+
+<Layout
+  title={`Terms & Conditions | ${site.name}`}
+  description={`Terms and conditions for ${site.name}, including our text message (SMS) program terms.`}
+>
+  <Breadcrumbs items={[{ name: 'Home', url: '/' }, { name: 'Terms & Conditions', url: '/terms/' }]} />
+
+  <section class="mx-auto max-w-3xl px-4 py-12 text-sm text-slate-700 dark:text-slate-300">
+    <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl dark:text-white">Terms &amp; Conditions</h1>
+    <p class="mt-2 text-slate-500 dark:text-slate-400">Effective {effectiveDate}</p>
+
+    <div class="mt-8 space-y-8">
+      <div>
+        <h2 class="text-lg font-semibold text-slate-900 dark:text-white">Services</h2>
+        <p class="mt-2">
+          {site.name} provides appliance repair services in the Las Vegas area. By requesting service through our
+          website, phone, or email, you agree to these terms.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-semibold text-slate-900 dark:text-white">Text Messaging (SMS) Program Terms</h2>
+        <p class="mt-2">
+          When you book service, you may opt in to receive text messages from {site.name} about your appointment —
+          confirmations, technician on-the-way alerts, and invoices. This program does not include marketing or
+          promotional messages.
+        </p>
+        <ul class="mt-3 list-disc space-y-1 pl-5">
+          <li><strong>Opt-in:</strong> Checking the text-updates box on our booking form at {' '}
+            <a href="/" class="text-blue-700 hover:underline dark:text-blue-400">bestchoicerepair.com</a>.
+          </li>
+          <li><strong>Message frequency:</strong> Varies based on your service activity — typically a handful of messages per appointment.</li>
+          <li><strong>Message and data rates may apply.</strong></li>
+          <li><strong>Opt-out:</strong> Reply <strong>STOP</strong> at any time and we will stop sending texts. You may get one final confirmation text.</li>
+          <li><strong>Help:</strong> Reply <strong>HELP</strong> for assistance, or call us at {site.phoneDisplay}.</li>
+          <li><strong>Carriers:</strong> Supported carriers include, but are not limited to, AT&amp;T, T-Mobile, Verizon Wireless, and other major U.S. carriers. Carriers are not liable for delayed or undelivered messages.</li>
+          <li>No mobile information will be shared with third parties or affiliates for marketing or promotional purposes.</li>
+          <li>Consent to receive texts is not a condition of purchasing any service.</li>
+        </ul>
+        <p class="mt-3">
+          For details on how we handle your information, see our{' '}
+          <a href="/privacy/" class="text-blue-700 hover:underline dark:text-blue-400">Privacy Policy</a>.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-semibold text-slate-900 dark:text-white">Contact Us</h2>
+        <p class="mt-2">
+          Questions about these terms? Call {site.phoneDisplay} or email{' '}
+          <a href={`mailto:${site.email}`} class="text-blue-700 hover:underline dark:text-blue-400">{site.email}</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

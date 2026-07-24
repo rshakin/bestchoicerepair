@@ -98,6 +98,14 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
           <input type="tel" name="phone" id="phone" required placeholder="Phone" class="rounded-lg border border-slate-300 px-3 py-2 text-base sm:text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-white" />
         </div>
         <input type="email" name="email" id="email" required placeholder="Email" class="mt-3 w-full rounded-lg border border-slate-300 px-3 py-2 text-base sm:text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-white" />
+        <label class="mt-3 flex items-start gap-2 text-xs text-slate-500 dark:text-slate-400">
+          <input type="checkbox" name="sms_consent" id="sms_consent" value="yes" class="mt-0.5 h-4 w-4 shrink-0 rounded border-slate-300 text-blue-700 dark:border-slate-700" />
+          <span>
+            Text me appointment confirmations, technician on-the-way alerts, and invoices at the number above.
+            Msg frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help.
+            See our <a href="/privacy/" target="_blank" class="underline hover:text-slate-700 dark:hover:text-slate-300">Privacy Policy</a>.
+          </span>
+        </label>
         <div class="mt-3 grid grid-cols-3 gap-3">
           <input type="text" name="address" id="address" required placeholder="Street address" class="col-span-2 rounded-lg border border-slate-300 px-3 py-2 text-base sm:text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-white" />
           <input type="text" name="unit_number" id="unit_number" placeholder="Unit #" class="rounded-lg border border-slate-300 px-3 py-2 text-base sm:text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-white" />
@@ -249,6 +257,7 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
       ['Name', data.name],
       ['Phone', data.phone],
       ['Email', data.email],
+      ['Text updates', data.sms_consent === 'yes' ? 'Yes' : 'No'],
       ['Address', [data.address, data.unit_number ? `Unit ${data.unit_number}` : '', data.city, data.state, data.zip].filter(Boolean).join(', ')],
     ];
     if (data.gate_code) rows.push(['Gate code', data.gate_code]);
