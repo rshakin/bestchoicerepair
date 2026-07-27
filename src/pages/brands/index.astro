@@ -4,8 +4,28 @@ import Layout from '../../layouts/Layout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import BrandMark from '../../components/BrandMark.astro';
 import { site } from '../../lib/site';
+import { breadcrumbSchema, faqSchema } from '../../lib/schema';
 
 const brands = (await getCollection('brands')).sort((a, b) => a.data.order - b.data.order);
+const breadcrumbItems = [{ name: 'Home', url: '/' }, { name: 'Brands', url: '/brands/' }];
+
+const faq = faqSchema([
+  {
+    question: 'Do you repair every appliance brand?',
+    answer:
+      "We carry parts and diagnostic experience for the brands listed on this page, from everyday names to premium built-in kitchen makers. If you don't see your brand, call us — we can often still help.",
+  },
+  {
+    question: 'Are you factory-authorized for these brands?',
+    answer:
+      `${site.name} is independent and family-owned, and not factory-authorized or affiliated with any brand we service. We repair these brands because we've invested in the parts inventory, diagnostic tools, and in-home repair experience — not through a manufacturer partnership.`,
+  },
+  {
+    question: 'Does repairing a non-authorized brand void my warranty?',
+    answer:
+      'It depends on the manufacturer and how old the unit is — many warranties have already expired by the time an appliance needs a repair. We can help you check before we start any work.',
+  },
+]);
 
 const tierOrder = ['Luxury & Built-In', 'Modern & Everyday', 'Workhorse & Value'] as const;
 const tierCopy: Record<(typeof tierOrder)[number], string> = {
@@ -23,8 +43,12 @@ const brandsByTier = tierOrder.map((tier) => ({
 <Layout
   title={`Brands We Repair | ${site.name}`}
   description="Appliance repair for Samsung, GE, Whirlpool, Maytag, Bosch, Wolf, Thermador, Sub-Zero, and Viking in Las Vegas. Same-day service, 90-day warranty."
+  schema={[
+    breadcrumbSchema(breadcrumbItems.map((i) => ({ ...i, url: new URL(i.url, Astro.site).toString() }))),
+    faq,
+  ]}
 >
-  <Breadcrumbs items={[{ name: 'Home', url: '/' }, { name: 'Brands', url: '/brands/' }]} />
+  <Breadcrumbs items={breadcrumbItems} />
 
   <section class="mx-auto max-w-7xl px-4 py-12">
     <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">Brands We Repair</h1>
@@ -57,5 +81,17 @@ const brandsByTier = tierOrder.map((tier) => ({
       brands listed above. We service these brands because we've invested in the parts inventory, the diagnostic
       tools, and the in-home repair history.
     </p>
+
+    <div class="mt-10 max-w-2xl">
+      <h2 class="text-xl font-semibold text-slate-900 dark:text-white">Common Questions</h2>
+      <div class="mt-4 space-y-4">
+        {faq.mainEntity.map((item) => (
+          <div>
+            <h3 class="font-semibold text-slate-900 dark:text-white">{item.name}</h3>
+            <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">{item.acceptedAnswer.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
   </section>
 </Layout>

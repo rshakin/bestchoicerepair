@@ -2,13 +2,39 @@
 import Layout from '../layouts/Layout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { site } from '../lib/site';
+import { breadcrumbSchema, faqSchema } from '../lib/schema';
+
+const breadcrumbItems = [{ name: 'Home', url: '/' }, { name: 'Contact', url: '/contact/' }];
+
+const faq = faqSchema([
+  {
+    question: 'What is the fastest way to reach you?',
+    answer: `Calling ${site.phoneDisplay} gets the fastest response. Online requests are usually confirmed same-day, but a phone call can often get you on the schedule immediately.`,
+  },
+  {
+    question: 'Do you offer emergency or after-hours service?',
+    answer: 'Yes — emergency service is available 24 hours a day, in addition to our regular Monday-Saturday hours.',
+  },
+  {
+    question: 'Is there a fee just to come look at my appliance?',
+    answer: `${site.serviceCallFee} for the diagnostic visit, fully waived if you go ahead with the repair.`,
+  },
+  {
+    question: 'Do you serve my area?',
+    answer: `We cover ${site.serviceAreaCities.join(', ')}, and the surrounding neighborhoods — see our Service Areas page for full ZIP code coverage.`,
+  },
+]);
 ---
 
 <Layout
   title={`Contact Us | ${site.name}`}
   description="Contact Best Choice Repair for appliance repair in Las Vegas. Call, email, or request service online."
+  schema={[
+    breadcrumbSchema(breadcrumbItems.map((i) => ({ ...i, url: new URL(i.url, Astro.site).toString() }))),
+    faq,
+  ]}
 >
-  <Breadcrumbs items={[{ name: 'Home', url: '/' }, { name: 'Contact', url: '/contact/' }]} />
+  <Breadcrumbs items={breadcrumbItems} />
 
   <section class="mx-auto grid max-w-5xl gap-10 px-4 py-12 lg:grid-cols-2">
     <div>
@@ -40,7 +66,9 @@ import { site } from '../lib/site';
         </div>
         <div>
           <dt class="font-semibold text-slate-900 dark:text-white">Service Area</dt>
-          <dd class="text-slate-600 dark:text-slate-400">{site.serviceAreaCities.join(', ')}</dd>
+          <dd class="text-slate-600 dark:text-slate-400">
+            {site.serviceAreaCities.join(', ')}. See our <a href="/locations/" class="text-blue-700 hover:underline dark:text-blue-400">Service Areas page</a> for full ZIP code coverage.
+          </dd>
         </div>
       </dl>
     </div>
@@ -53,6 +81,18 @@ import { site } from '../lib/site';
       <button type="button" data-open-booking class="mt-6 rounded-md bg-blue-700 px-6 py-3 font-semibold text-white hover:bg-blue-800">
         Start Your Request
       </button>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-3xl px-4 pb-16">
+    <h2 class="text-xl font-semibold text-slate-900 dark:text-white">Common Questions</h2>
+    <div class="mt-4 space-y-4">
+      {faq.mainEntity.map((item) => (
+        <div>
+          <h3 class="font-semibold text-slate-900 dark:text-white">{item.name}</h3>
+          <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">{item.acceptedAnswer.text}</p>
+        </div>
+      ))}
     </div>
   </section>
 </Layout>

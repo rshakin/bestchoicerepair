@@ -5,8 +5,10 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
 import ApplianceIcon from '../components/ApplianceIcon.astro';
 import { site } from '../lib/site';
 import { applianceColor } from '../lib/icons';
+import { breadcrumbSchema } from '../lib/schema';
 
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const breadcrumbItems = [{ name: 'Home', url: '/' }, { name: 'About', url: '/about/' }];
 
 const whyUs = [
   { title: 'Same-day & next-day service', body: 'Most calls get an appointment the same day or the next — no waiting a week for a technician.' },
@@ -28,8 +30,9 @@ const steps = [
 <Layout
   title={`About Us | ${site.name}`}
   description="Family-owned appliance repair company serving the Las Vegas valley. Licensed & insured, 90-day warranty on parts and labor."
+  schema={breadcrumbSchema(breadcrumbItems.map((i) => ({ ...i, url: new URL(i.url, Astro.site).toString() })))}
 >
-  <Breadcrumbs items={[{ name: 'Home', url: '/' }, { name: 'About', url: '/about/' }]} />
+  <Breadcrumbs items={breadcrumbItems} />
 
   <article class="mx-auto max-w-3xl px-4 py-12">
     <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">About {site.name}</h1>

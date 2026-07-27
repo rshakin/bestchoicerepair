@@ -5,6 +5,7 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ApplianceIcon from '../../components/ApplianceIcon.astro';
 import { site } from '../../lib/site';
 import { applianceColor } from '../../lib/icons';
+import { breadcrumbSchema, faqSchema } from '../../lib/schema';
 
 const problems = await getCollection('problems');
 
@@ -13,13 +14,36 @@ const byAppliance = problems.reduce<Record<string, typeof problems>>((acc, probl
   acc[key] = acc[key] ? [...acc[key], problem] : [problem];
   return acc;
 }, {});
+
+const breadcrumbItems = [{ name: 'Home', url: '/' }, { name: 'Self-Help', url: '/problems/' }];
+
+const faq = faqSchema([
+  {
+    question: 'Should I try to fix this myself, or call a technician?',
+    answer:
+      "Each guide's causes section flags what's safe to check yourself (like a clogged filter or tripped breaker) versus what usually means a failed part. When in doubt, or if you smell burning or see sparking, stop using the appliance and call us.",
+  },
+  {
+    question: "I don't see my exact symptom listed — what should I do?",
+    answer: `Call us at ${site.phoneDisplay} and describe what's happening. Our technicians can usually narrow down the likely cause over the phone before they even arrive.`,
+  },
+  {
+    question: 'Will fixing this myself void my repair warranty with you?',
+    answer:
+      "Our 90-day warranty covers the repair work we perform. Checking simple things yourself first (like the ones listed in these guides) doesn't affect that — it's exactly what we'd ask you to check anyway.",
+  },
+]);
 ---
 
 <Layout
   title={`Self-Help Guides: Common Appliance Problems | ${site.name}`}
   description="Symptoms and causes for the most common washer, dryer, refrigerator, oven, dishwasher, microwave, and disposal problems in Las Vegas."
+  schema={[
+    breadcrumbSchema(breadcrumbItems.map((i) => ({ ...i, url: new URL(i.url, Astro.site).toString() }))),
+    faq,
+  ]}
 >
-  <Breadcrumbs items={[{ name: 'Home', url: '/' }, { name: 'Self-Help', url: '/problems/' }]} />
+  <Breadcrumbs items={breadcrumbItems} />
 
   <section class="mx-auto max-w-7xl px-4 py-12">
     <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">Self-Help Guides</h1>
@@ -48,5 +72,17 @@ const byAppliance = problems.reduce<Record<string, typeof problems>>((acc, probl
         </div>
       </div>
     ))}
+
+    <div class="mt-12 max-w-2xl">
+      <h2 class="text-xl font-semibold text-slate-900 dark:text-white">Common Questions</h2>
+      <div class="mt-4 space-y-4">
+        {faq.mainEntity.map((item) => (
+          <div>
+            <h3 class="font-semibold text-slate-900 dark:text-white">{item.name}</h3>
+            <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">{item.acceptedAnswer.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
   </section>
 </Layout>
