@@ -36,6 +36,14 @@ export const site = {
     'Spring Valley',
     'Enterprise',
   ],
+  // City/state only — matches the Google Business Profile's registered
+  // location. No street address on purpose (see the note in schema.ts):
+  // this is a service-area business with no public storefront, and Google
+  // Business Profile guidelines call for hiding the precise address for
+  // exactly that reason. City-level address is still legitimate structured
+  // data and doesn't carry that same risk.
+  baseCity: 'North Las Vegas',
+  baseRegion: 'NV',
   brandsShort: [
     'Samsung', 'GE', 'Whirlpool', 'Maytag', 'Bosch', 'LG', 'Wolf', 'Thermador', 'Sub-Zero', 'Viking',
     'Admiral', 'AEG', 'Amana', 'Dacor', 'Electrolux', 'Frigidaire', 'Inglis', 'JennAir', 'KitchenAid',
@@ -50,7 +58,7 @@ export const site = {
   sameAs: ['https://www.google.com/maps/place/?q=place_id:ChIJr6hy9_fpyIARHGI-OhFqvts'] as string[],
   googleReviewUrl: 'https://g.page/r/CRxiPjoRar7bEBM/review',
   googleRating: 4.9,
-  googleReviewCount: 116,
+  googleReviewCount: 117,
 } as const;
 
 // Placeholder platform homepages until we have this business's actual profile

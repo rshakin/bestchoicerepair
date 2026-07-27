@@ -37,6 +37,18 @@ const faq = faqSchema([
     answer: `${entry.meaning}. ${entry.cause}`,
   },
 ]);
+
+// Same brand+appliance first (most relevant to someone who just looked
+// this code up), padded out with other brands' codes for the same
+// appliance so the list isn't empty on brands with only one documented
+// code. Capped at 6 so it stays a quick scan, not a wall of links.
+const siblingCodes = brandGroup.codes
+  .filter((c) => c.code !== entry.code)
+  .map((c) => ({ brand: brandGroup.brand, brandSlug: brandGroup.brandSlug, ...c }));
+const otherBrandCodes = appliance.brands
+  .filter((b) => b.brandSlug !== brandGroup.brandSlug)
+  .flatMap((b) => b.codes.map((c) => ({ brand: b.brand, brandSlug: b.brandSlug, ...c })));
+const relatedCodes = [...siblingCodes, ...otherBrandCodes].slice(0, 6);
 ---
 
 <Layout
@@ -79,6 +91,13 @@ const faq = faqSchema([
       </ul>
     </div>
 
+    <div class="mt-8">
+      <h2 class="text-lg font-semibold text-slate-900 dark:text-white">What happens when you call us</h2>
+      <p class="mt-2 text-slate-600 dark:text-slate-400">
+        If those checks don't clear the {entry.code} code, it's usually a sign of a failed part rather than something to keep resetting. A technician runs a full diagnostic on your {appliance.title.toLowerCase()}, confirms the cause, and quotes the repair before any work starts. The {site.serviceCallFee} service call is waived if you go ahead with the repair, and parts and labor are covered by our {site.warranty.toLowerCase()}.
+      </p>
+    </div>
+
     <div class="mt-12 rounded-lg bg-slate-900 p-8 text-center">
       <h2 class="text-xl font-semibold text-white">Still showing {entry.code}?</h2>
       <p class="mt-2 text-slate-300">
@@ -93,6 +112,28 @@ const faq = faqSchema([
         </a>
       </div>
     </div>
+
+    {relatedCodes.length > 0 && (
+      <div class="mt-12">
+        <h2 class="text-lg font-semibold text-slate-900 dark:text-white">Other {appliance.title} Error Codes</h2>
+        <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
+          Not seeing {entry.code}, or want to compare it against a different code on the display? Here's what these other common {appliance.title.toLowerCase()} codes mean.
+        </p>
+        <ul class="mt-4 grid gap-3 sm:grid-cols-2">
+          {relatedCodes.map((c) => (
+            <li>
+              <a
+                href={`/error-codes/${appliance.slug}/${c.brandSlug}-${codeSlug(c.code)}/`}
+                class="block rounded-lg border border-slate-200 p-3 text-sm hover:border-blue-400 dark:border-slate-800"
+              >
+                <span class="font-mono font-semibold text-slate-900 dark:text-white">{c.brand} {c.code}</span>
+                <span class="mt-1 block text-slate-600 dark:text-slate-400">{c.meaning}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
 
     <a href={`/error-codes/${appliance.slug}/`} class="mt-8 inline-block text-sm font-semibold text-blue-700 hover:underline dark:text-blue-400">
       &larr; All {appliance.title} error codes

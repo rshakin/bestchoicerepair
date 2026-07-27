@@ -1,12 +1,25 @@
 import { site } from './site';
 
-// NOTE: address and priceRange precision are intentionally left out until
-// the business supplies real, verifiable values (street address, license #).
-// aggregateRating below is real, pulled from the verified Google Business
-// Profile as of 2026-07-18 — update these two numbers if they drift instead
-// of leaving them stale. Publishing fabricated address or rating data in
-// structured data violates Google's guidelines and can trigger a manual
-// action — never put a placeholder/estimated number here.
+// City-level only — see the note on localBusinessSchema below. Shared so
+// every schema block that names a provider agrees on the same address.
+const providerAddress = {
+  '@type': 'PostalAddress',
+  addressLocality: site.baseCity,
+  addressRegion: site.baseRegion,
+  addressCountry: 'US',
+};
+
+// NOTE: street address and priceRange precision are intentionally left out
+// until the business supplies real, verifiable values (street address,
+// license #) — see baseCity/baseRegion in site.ts for the city-level
+// address that IS safe to publish (matches the registered GBP location,
+// no street-level precision, standard for a service-area business with no
+// public storefront). aggregateRating below reads from site.ts's
+// googleRating/googleReviewCount, which are real numbers pulled from the
+// verified Google Business Profile — keep those two updated as they drift
+// instead of leaving them stale. Publishing fabricated address or rating
+// data in structured data violates Google's guidelines and can trigger a
+// manual action — never put a placeholder/estimated number here.
 export function localBusinessSchema() {
   return {
     '@context': 'https://schema.org',
@@ -16,6 +29,7 @@ export function localBusinessSchema() {
       'Appliance repair serving the Las Vegas metro area: washers, dryers, refrigerators, dishwashers, ovens, ranges, microwaves, and garbage disposals.',
     telephone: site.phoneHref.replace('tel:', ''),
     email: site.email,
+    address: providerAddress,
     areaServed: site.serviceAreaCities.map((city) => ({
       '@type': 'City',
       name: city,
@@ -23,8 +37,8 @@ export function localBusinessSchema() {
     ...(site.sameAs.length > 0 ? { sameAs: site.sameAs } : {}),
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      reviewCount: '116',
+      ratingValue: String(site.googleRating),
+      reviewCount: String(site.googleReviewCount),
       bestRating: '5',
     },
     openingHoursSpecification: [
@@ -90,6 +104,7 @@ export function serviceSchema(opts: { name: string; description: string; url: st
       '@type': 'HomeAndConstructionBusiness',
       name: site.name,
       telephone: site.phoneHref.replace('tel:', ''),
+      address: providerAddress,
     },
     areaServed: site.serviceAreaCities.map((city) => ({ '@type': 'City', name: city })),
   };
@@ -114,6 +129,7 @@ export function locationServiceSchema(opts: {
       '@type': 'HomeAndConstructionBusiness',
       name: site.name,
       telephone: site.phoneHref.replace('tel:', ''),
+      address: providerAddress,
     },
     areaServed: {
       '@type': 'City',
