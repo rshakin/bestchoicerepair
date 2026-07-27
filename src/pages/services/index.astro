@@ -6,15 +6,38 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ApplianceIcon from '../../components/ApplianceIcon.astro';
 import { site } from '../../lib/site';
 import { applianceColor, applianceImage } from '../../lib/icons';
+import { breadcrumbSchema, faqSchema } from '../../lib/schema';
 
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+
+const breadcrumbItems = [{ name: 'Home', url: '/' }, { name: 'Services', url: '/services/' }];
+
+const faq = faqSchema([
+  {
+    question: 'What appliance brands do you repair?',
+    answer:
+      "Everyday brands like Samsung, GE, Whirlpool, and Maytag, and premium built-in brands like Sub-Zero, Wolf, and Thermador. See our full brands list for the complete lineup.",
+  },
+  {
+    question: 'Do you offer same-day appliance repair?',
+    answer: `Yes, same-day and next-day appointments are available for most repairs. ${site.serviceCallFee} service call, waived when you go ahead with the repair.`,
+  },
+  {
+    question: 'Is the repair covered by a warranty?',
+    answer: `Every repair is backed by our ${site.warranty.toLowerCase()}, regardless of which appliance or brand it is.`,
+  },
+]);
 ---
 
 <Layout
   title={`Appliance Repair Services | ${site.name}`}
   description="Full appliance repair services in Las Vegas: washers, dryers, refrigerators, dishwashers, ovens, ranges, microwaves, and garbage disposals."
+  schema={[
+    breadcrumbSchema(breadcrumbItems.map((i) => ({ ...i, url: new URL(i.url, Astro.site).toString() }))),
+    faq,
+  ]}
 >
-  <Breadcrumbs items={[{ name: 'Home', url: '/' }, { name: 'Services', url: '/services/' }]} />
+  <Breadcrumbs items={breadcrumbItems} />
 
   <section class="mx-auto max-w-7xl px-4 py-12">
     <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">Appliance Repair Services</h1>
@@ -46,6 +69,18 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
         </a>
         );
       })}
+    </div>
+
+    <div class="mt-12 max-w-2xl">
+      <h2 class="text-xl font-semibold text-slate-900 dark:text-white">Common Questions</h2>
+      <div class="mt-4 space-y-4">
+        {faq.mainEntity.map((item) => (
+          <div>
+            <h3 class="font-semibold text-slate-900 dark:text-white">{item.name}</h3>
+            <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">{item.acceptedAnswer.text}</p>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 </Layout>

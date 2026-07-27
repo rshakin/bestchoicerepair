@@ -5,13 +5,37 @@ import ApplianceIcon from '../../components/ApplianceIcon.astro';
 import { site } from '../../lib/site';
 import { applianceColor } from '../../lib/icons';
 import { errorCodes } from '../../lib/errorCodes';
+import { breadcrumbSchema, faqSchema } from '../../lib/schema';
+
+const breadcrumbItems = [{ name: 'Home', url: '/' }, { name: 'Error Codes', url: '/error-codes/' }];
+
+const faq = faqSchema([
+  {
+    question: 'My appliance is showing a code not listed here — what should I do?',
+    answer:
+      "Codes vary by model year and can look different across similar-looking machines. Call us and describe what's on the display — our technicians carry the diagnostic tools to read the exact fault, even for codes not covered here.",
+  },
+  {
+    question: 'Is it safe to keep using the appliance while it shows an error code?',
+    answer:
+      'It depends on the code — some (like a simple door/lid sensor error) are harmless to leave until a technician arrives, while others (like a heating or electrical fault) are worth stopping use for. When in doubt, unplug the unit and call us.',
+  },
+  {
+    question: 'Do you fix the specific error, or just the whole appliance?',
+    answer: `We diagnose the exact cause behind the code and repair only what's actually failed — most error codes come down to one part. ${site.serviceCallFee} service call, waived when you go ahead with the repair.`,
+  },
+]);
 ---
 
 <Layout
   title={`Appliance Error Codes | ${site.name}`}
   description="What your washer, dryer, refrigerator, dishwasher, oven, range, or microwave error code means, common causes, and when to call a technician in Las Vegas."
+  schema={[
+    breadcrumbSchema(breadcrumbItems.map((i) => ({ ...i, url: new URL(i.url, Astro.site).toString() }))),
+    faq,
+  ]}
 >
-  <Breadcrumbs items={[{ name: 'Home', url: '/' }, { name: 'Error Codes', url: '/error-codes/' }]} />
+  <Breadcrumbs items={breadcrumbItems} />
 
   <section class="mx-auto max-w-7xl px-4 py-12">
     <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">Appliance Error Codes</h1>
@@ -44,5 +68,17 @@ import { errorCodes } from '../../lib/errorCodes';
       Codes vary by model year and can look different across similar-looking machines. If you're not sure what
       you're seeing, call us — our technicians carry the diagnostic tools to read the exact fault.
     </p>
+
+    <div class="mt-10 max-w-2xl">
+      <h2 class="text-xl font-semibold text-slate-900 dark:text-white">Common Questions</h2>
+      <div class="mt-4 space-y-4">
+        {faq.mainEntity.map((item) => (
+          <div>
+            <h3 class="font-semibold text-slate-900 dark:text-white">{item.name}</h3>
+            <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">{item.acceptedAnswer.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
   </section>
 </Layout>

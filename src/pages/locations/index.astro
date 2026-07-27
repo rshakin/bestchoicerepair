@@ -3,15 +3,36 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { site } from '../../lib/site';
+import { breadcrumbSchema, faqSchema } from '../../lib/schema';
 
 const locations = (await getCollection('locations')).sort((a, b) => a.data.order - b.data.order);
+const breadcrumbItems = [{ name: 'Home', url: '/' }, { name: 'Locations', url: '/locations/' }];
+
+const faq = faqSchema([
+  {
+    question: 'Do you charge extra to travel to certain areas?',
+    answer: `No — the ${site.serviceCallFee} service call is the same across every area we serve, with no extra travel fee.`,
+  },
+  {
+    question: "What if I don't see my city listed?",
+    answer: `We may still cover it — call us at ${site.phoneDisplay} and we'll confirm whether we can get a technician to you.`,
+  },
+  {
+    question: 'How fast can a technician get to me?',
+    answer: 'Same-day and next-day appointments are available throughout our service area, depending on how full the schedule is that day.',
+  },
+]);
 ---
 
 <Layout
   title={`Service Areas | ${site.name}`}
   description={`Appliance repair across the Las Vegas metro: ${site.serviceAreaCities.join(', ')}.`}
+  schema={[
+    breadcrumbSchema(breadcrumbItems.map((i) => ({ ...i, url: new URL(i.url, Astro.site).toString() }))),
+    faq,
+  ]}
 >
-  <Breadcrumbs items={[{ name: 'Home', url: '/' }, { name: 'Locations', url: '/locations/' }]} />
+  <Breadcrumbs items={breadcrumbItems} />
 
   <section class="mx-auto max-w-7xl px-4 py-12">
     <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">Service Areas</h1>
@@ -31,6 +52,18 @@ const locations = (await getCollection('locations')).sort((a, b) => a.data.order
           <span class="mt-4 inline-block text-sm font-semibold text-blue-700 dark:text-blue-400">Service in {location.data.name} &rarr;</span>
         </a>
       ))}
+    </div>
+
+    <div class="mt-12 max-w-2xl">
+      <h2 class="text-xl font-semibold text-slate-900 dark:text-white">Common Questions</h2>
+      <div class="mt-4 space-y-4">
+        {faq.mainEntity.map((item) => (
+          <div>
+            <h3 class="font-semibold text-slate-900 dark:text-white">{item.name}</h3>
+            <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">{item.acceptedAnswer.text}</p>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 </Layout>

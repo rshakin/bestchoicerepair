@@ -4,7 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import BrandMark from '../../components/BrandMark.astro';
 import { site } from '../../lib/site';
-import { breadcrumbSchema } from '../../lib/schema';
+import { breadcrumbSchema, faqSchema } from '../../lib/schema';
 
 export async function getStaticPaths() {
   const brands = await getCollection('brands');
@@ -13,24 +13,48 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+const allBrands = await getCollection('brands');
+const sameTierBrands = allBrands
+  .filter((b) => b.data.tier === entry.data.tier && b.id !== entry.id)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 6);
 
 const breadcrumbItems = [
   { name: 'Home', url: '/' },
   { name: 'Brands', url: '/brands/' },
   { name: entry.data.name, url: `/brands/${entry.id}/` },
 ];
+
+const faq = faqSchema([
+  {
+    question: `Do you repair ${entry.data.name} appliances?`,
+    answer: `Yes — we service ${entry.data.name} appliances across the Las Vegas valley, with same-day appointments and a 90-day warranty on parts and labor.`,
+  },
+  {
+    question: `How much does ${entry.data.name} appliance repair cost?`,
+    answer: `${site.serviceCallFee} for the diagnostic visit, waived when you move forward with the repair. The exact cost depends on the part and issue — our technician quotes it upfront before any work starts.`,
+  },
+  {
+    question: `Is my ${entry.data.name} repair covered under warranty?`,
+    answer: `Every repair we perform is backed by our own 90-day warranty on parts and labor, separate from any manufacturer warranty still active on the unit.`,
+  },
+]);
 ---
 
 <Layout
   title={`${entry.data.name} Appliance Repair in Las Vegas | ${site.name}`}
   description={entry.data.metaDescription}
-  schema={breadcrumbSchema(breadcrumbItems.map((i) => ({ ...i, url: new URL(i.url, Astro.site).toString() })))}
+  schema={[
+    breadcrumbSchema(breadcrumbItems.map((i) => ({ ...i, url: new URL(i.url, Astro.site).toString() }))),
+    faq,
+  ]}
 >
   <Breadcrumbs items={breadcrumbItems} />
 
   <article class="mx-auto max-w-3xl px-4 py-12">
     <BrandMark name={entry.data.name} size="lg" />
-    <h1 class="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">{entry.data.name} Appliance Repair</h1>
+    <p class="mt-4 text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-500">{entry.data.tier}</p>
+    <h1 class="mt-1 text-3xl font-bold text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">{entry.data.name} Appliance Repair</h1>
 
     <div class="prose prose-slate mt-8 max-w-none dark:prose-invert">
       <Content />
@@ -47,6 +71,33 @@ const breadcrumbItems = [
         ))}
       </ul>
     </div>
+
+    <div class="mt-10">
+      <h2 class="text-xl font-semibold text-slate-900 dark:text-white">Common questions</h2>
+      <div class="mt-4 space-y-4">
+        {faq.mainEntity.map((item) => (
+          <div>
+            <h3 class="font-semibold text-slate-900 dark:text-white">{item.name}</h3>
+            <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">{item.acceptedAnswer.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {sameTierBrands.length > 0 && (
+      <div class="mt-10">
+        <h2 class="text-xl font-semibold text-slate-900 dark:text-white">Other {entry.data.tier} Brands We Service</h2>
+        <ul class="mt-4 grid gap-2 sm:grid-cols-2">
+          {sameTierBrands.map((b) => (
+            <li>
+              <a href={`/brands/${b.id}/`} class="block rounded-lg border border-slate-200 p-3 text-sm font-semibold text-slate-900 hover:border-blue-400 dark:border-slate-800 dark:text-white">
+                {b.data.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
 
     <div class="mt-12 rounded-lg bg-slate-900 p-8 text-center">
       <h2 class="text-xl font-semibold text-white">Have a {entry.data.name} that needs a repair?</h2>
