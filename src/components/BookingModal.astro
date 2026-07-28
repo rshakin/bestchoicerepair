@@ -8,7 +8,14 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
 ---
 
 <div id="booking-overlay" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-950/70 px-4 pt-4 pb-[calc(1rem+env(safe-area-inset-bottom))] backdrop-blur-sm">
-  <div id="booking-panel" class="flex max-h-[90vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl bg-white shadow-2xl dark:bg-slate-900">
+  <div
+    id="booking-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Request Service"
+    tabindex="-1"
+    class="flex max-h-[90vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl bg-white shadow-2xl outline-none dark:bg-slate-900"
+  >
     <div class="flex items-center gap-4 px-6 pt-6">
       <div class="flex flex-1 gap-1.5">
         {[0, 1, 2, 3].map((i) => (
@@ -305,22 +312,51 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
     goTo(0);
   }
 
+  // Focus trap: computed fresh on every Tab press rather than cached once,
+  // since which controls are focusable changes as the wizard moves between
+  // steps (each step hides the others via .hidden, which offsetParent
+  // already accounts for).
+  let lastFocused = null;
+  function getFocusable() {
+    return Array.from(panel.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'))
+      .filter((el) => !el.disabled && el.offsetParent !== null);
+  }
+  function trapFocus(e) {
+    if (e.key !== 'Tab' || overlay.classList.contains('hidden')) return;
+    const focusable = getFocusable();
+    if (!focusable.length) { e.preventDefault(); panel.focus(); return; }
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+
   function open() {
+    lastFocused = document.activeElement;
     overlay.classList.remove('hidden');
     overlay.classList.add('flex');
     document.body.classList.add('overflow-hidden');
+    panel.focus();
   }
   function close() {
     overlay.classList.add('hidden');
     overlay.classList.remove('flex');
     document.body.classList.remove('overflow-hidden');
     setTimeout(resetForm, 200);
+    if (lastFocused && document.body.contains(lastFocused)) lastFocused.focus();
+    lastFocused = null;
   }
 
   closeBtn.addEventListener('click', close);
   successDoneBtn.addEventListener('click', close);
   overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !overlay.classList.contains('hidden')) close(); });
+  document.addEventListener('keydown', trapFocus);
   document.addEventListener('click', (e) => {
     const trigger = e.target.closest('[data-open-booking]');
     if (trigger) { e.preventDefault(); open(); }
