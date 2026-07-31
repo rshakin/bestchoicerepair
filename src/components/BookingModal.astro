@@ -179,6 +179,19 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
           Call {site.phoneDisplay}
         </a>
       </div>
+      <!-- A second submit within a minute of the first (double-tap, a slow
+           connection making someone retry, testing the form twice) hits the
+           server's per-IP throttle — not a real failure, just needs a short
+           wait. Showing the "couldn't send, please call" message for this
+           told a customer whose first submission likely already went
+           through to abandon the online flow entirely. -->
+      <div data-step="throttled" class="booking-step hidden text-center">
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white">Just a moment.</h2>
+        <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">You're submitting a little fast — if your request already went through, no need to resend. Otherwise, wait a few seconds and try again.</p>
+        <button type="button" data-throttled-retry class="mt-6 w-full rounded-lg bg-blue-700 px-6 py-2.5 text-sm font-semibold text-white hover:bg-blue-800">
+          Try Again
+        </button>
+      </div>
 
       <div id="booking-nav" class="mt-6 flex items-center justify-between gap-3">
         <button type="button" id="booking-back" class="hidden text-sm font-semibold text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200">
@@ -210,6 +223,7 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
   const closeBtn = document.getElementById('booking-close');
   const successNameEl = document.querySelector('[data-success-name]');
   const successDoneBtn = document.querySelector('[data-success-done]');
+  const throttledRetryBtn = document.querySelector('[data-throttled-retry]');
 
   const STEP_COUNT = 4; // steps 0-3 are the real wizard; success/error are terminal
   let current = 0;
@@ -354,6 +368,7 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
 
   closeBtn.addEventListener('click', close);
   successDoneBtn.addEventListener('click', close);
+  throttledRetryBtn.addEventListener('click', () => goTo(STEP_COUNT - 1));
   overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !overlay.classList.contains('hidden')) close(); });
   document.addEventListener('keydown', trapFocus);
@@ -390,6 +405,12 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
+      if (res.status === 429) {
+        showStep('throttled');
+        current = 'throttled';
+        updateChrome();
+        return;
+      }
       if (!res.ok) throw new Error('Request failed');
       const firstName = (data.name || '').trim().split(/\s+/)[0];
       successNameEl.textContent = firstName ? `, ${firstName}` : '';
