@@ -25,18 +25,35 @@ const breadcrumbItems = [
   { name: entry.data.name, url: `/brands/${entry.id}/` },
 ];
 
+// Pulls each brand's own commonIssues/tier (already written per-brand in
+// src/content/brands/*.md) into the FAQ answers instead of just swapping the
+// brand name into an otherwise identical paragraph — the old version made
+// ~156 brand pages share near-verbatim FAQ text, which is exactly the kind
+// of thin/duplicate content Google's crawler deprioritizes at that scale.
+// Falls back to a generic phrase if a brand ever ships with fewer than 2
+// commonIssues so this can't render an "undefined" in production.
+const issues = entry.data.commonIssues;
+const issuePair = issues.length >= 2 ? `${issues[0].toLowerCase()} and ${issues[1].toLowerCase()}` : 'a range of common issues';
+const thirdIssue = (issues[2] ?? issues[0])?.toLowerCase() ?? 'most common problems';
+
+const tierCostNote: Record<string, string> = {
+  'Luxury & Built-In': `Parts for luxury and built-in units like ${entry.data.name} typically cost more than mainstream appliances, but our technician confirms the exact number before any work begins — no surprises.`,
+  'Modern & Everyday': `Parts for ${entry.data.name} are generally accessible, which keeps repair costs predictable — our technician confirms the exact number before any work begins.`,
+  'Workhorse & Value': `${entry.data.name} repairs tend to be some of our most affordable, since parts are widely available — our technician confirms the exact number before any work begins.`,
+};
+
 const faq = faqSchema([
   {
     question: `Do you repair ${entry.data.name} appliances?`,
-    answer: `Yes — we service ${entry.data.name} appliances across the Las Vegas valley, with same-day appointments and a 90-day warranty on parts and labor.`,
+    answer: `Yes — we regularly service ${entry.data.name} appliances across the Las Vegas valley, including ${issuePair}. Same-day appointments available, with a 90-day warranty on parts and labor.`,
   },
   {
     question: `How much does ${entry.data.name} appliance repair cost?`,
-    answer: `${site.serviceCallFee} for the diagnostic visit, waived when you move forward with the repair. The exact cost depends on the part and issue — our technician quotes it upfront before any work starts.`,
+    answer: `${site.serviceCallFee} for the diagnostic visit, waived when you move forward with the repair. ${tierCostNote[entry.data.tier] ?? tierCostNote['Modern & Everyday']}`,
   },
   {
     question: `Is my ${entry.data.name} repair covered under warranty?`,
-    answer: `Every repair we perform is backed by our own 90-day warranty on parts and labor, separate from any manufacturer warranty still active on the unit.`,
+    answer: `Every repair we perform — including common ${entry.data.name} problems like ${thirdIssue} — is backed by our own 90-day warranty on parts and labor, separate from any manufacturer warranty still active on the unit.`,
   },
 ]);
 ---
