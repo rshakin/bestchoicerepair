@@ -35,6 +35,15 @@ const locations = defineCollection({
     neighborhoods: z.array(z.string()),
     lat: z.number(),
     lng: z.number(),
+    // One sentence per service slug (services/*.md's filename), tying that
+    // specific service to this location's actual housing stock/appliance
+    // profile — e.g. Summerlin's built-in refrigeration columns, Paradise's
+    // stacked laundry units. Lets the /services/[service]/[location]/ combo
+    // pages say something genuinely different per city instead of just
+    // swapping the city name into an otherwise identical paragraph (see
+    // that template for why this matters — it was the single biggest
+    // driver of "not indexed" pages as of the 2026-08-19 GSC review).
+    serviceNotes: z.record(z.string(), z.string()),
   }),
 });
 

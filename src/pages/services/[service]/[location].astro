@@ -1,5 +1,5 @@
 ---
-import { getCollection, getEntries } from 'astro:content';
+import { getCollection, getEntries, render } from 'astro:content';
 import Layout from '../../../layouts/Layout.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import ApplianceIcon from '../../../components/ApplianceIcon.astro';
@@ -23,6 +23,22 @@ const applianceNoun = applianceShortName(service.data.icon);
 const relatedProblems = service.data.relatedProblems.length ? await getEntries(service.data.relatedProblems) : [];
 const otherLocations = allLocations.filter((l) => l.id !== location.id).sort((a, b) => a.data.order - b.data.order);
 const pageUrl = new URL(`/services/${service.id}/${location.id}/`, Astro.site).toString();
+
+// The one sentence in src/content/locations/*.md's serviceNotes that's
+// actually specific to THIS service+location pair (not just the city name
+// swapped in) — see the schema comment in content.config.ts for why this
+// exists. Every location is required to have all 7 service slugs covered,
+// so this should never actually fall back, but a generic line is safer than
+// an empty gap if a new service ever ships without an update to every
+// location file.
+const serviceNote = location.data.serviceNotes[service.id]
+  ?? `We regularly handle ${service.data.title.toLowerCase()} calls throughout ${location.data.name}.`;
+
+// The location's own write-up (src/content/locations/{location}.md) — real,
+// distinct-per-city prose that used to only appear on /locations/{city}/
+// and was never surfaced here, even though this combo page is what most
+// service+city searches actually land on.
+const { Content: LocationContent } = await render(location);
 
 const breadcrumbItems = [
   { name: 'Home', url: '/' },
@@ -86,6 +102,13 @@ const faq = faqSchema([
       surrounding neighborhoods. We carry common {applianceNoun} parts on the truck, so most repairs in {location.data.name} —
       ZIP codes {location.data.zipCodes.join(', ')} — are completed the same day, with a {site.warranty.toLowerCase()}.
     </p>
+
+    <p class="mt-4 text-slate-600 dark:text-slate-400">{serviceNote}</p>
+
+    <div class="prose prose-slate mt-10 max-w-none dark:prose-invert">
+      <h2 class="text-xl font-semibold text-slate-900 dark:text-white">Serving {location.data.name}</h2>
+      <LocationContent />
+    </div>
 
     <div class="mt-10">
       <h2 class="text-xl font-semibold text-slate-900 dark:text-white">Common {service.data.title.toLowerCase()} issues we fix in {location.data.name}</h2>
