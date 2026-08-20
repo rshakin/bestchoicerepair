@@ -15,6 +15,12 @@ export interface ApplianceCodes {
   slug: string;
   title: string;
   serviceId: string;
+  // Genuinely appliance-specific intro for /error-codes/{slug}/ — that page
+  // used to render one generic "tap a code below" sentence identical across
+  // all 6 appliance categories, which left it as one of the thinnest page
+  // types on the site (per the 2026-08-19 GSC review, all 6 were sitting
+  // unindexed). Real content instead of a template with the title swapped in.
+  intro: string;
   brands: BrandCodes[];
 }
 
@@ -30,6 +36,7 @@ export const errorCodes: ApplianceCodes[] = [
     slug: 'washer',
     title: 'Washer',
     serviceId: 'washer-repair',
+    intro: "Washer fault codes usually point to a specific failed sensor or component rather than a mystery — Samsung, LG, Whirlpool, Maytag, and GE models all display a short alphanumeric code on the panel when the control board detects something outside normal range, most often a drain, fill, or door-lock issue.",
     brands: [
       {
         brand: 'Samsung',
@@ -196,6 +203,7 @@ export const errorCodes: ApplianceCodes[] = [
     slug: 'dryer',
     title: 'Dryer',
     serviceId: 'dryer-repair',
+    intro: "Dryer error codes are less standardized across brands than most appliances — a code that means no-heat on a Samsung can point to something completely different on an LG or Whirlpool unit, so we've broken out what each one actually means by manufacturer.",
     brands: [
       {
         brand: 'Samsung',
@@ -326,6 +334,7 @@ export const errorCodes: ApplianceCodes[] = [
     slug: 'refrigerator',
     title: 'Refrigerator',
     serviceId: 'refrigerator-repair',
+    intro: "Refrigerator fault codes are often the first sign of a cooling problem before anything actually feels warm — Samsung, LG, GE, Whirlpool, and Sub-Zero models all flash a code on the display or control panel when a sensor detects the compressor, defrost system, or a fan isn't behaving as expected.",
     brands: [
       {
         brand: 'Samsung',
@@ -396,6 +405,7 @@ export const errorCodes: ApplianceCodes[] = [
     slug: 'dishwasher',
     title: 'Dishwasher',
     serviceId: 'dishwasher-repair',
+    intro: "Dishwasher error codes typically trace back to a water-related sensor — fill, drain, or leak detection — and the exact code format differs noticeably between Bosch's numeric codes and the letter-based codes Whirlpool, Maytag, GE, and Samsung use.",
     brands: [
       {
         brand: 'Bosch',
@@ -484,6 +494,7 @@ export const errorCodes: ApplianceCodes[] = [
     slug: 'oven',
     title: 'Oven & Range',
     serviceId: 'oven-range-repair',
+    intro: "Oven and range fault codes range from a simple sensor glitch to a genuine safety lockout — GE, Whirlpool, Maytag, Samsung, and premium brands like Wolf, Viking, and Thermador each use their own code format, and a flashing F-number almost always means the control board caught something during its own self-check.",
     brands: [
       {
         brand: 'GE',
@@ -578,6 +589,7 @@ export const errorCodes: ApplianceCodes[] = [
     slug: 'microwave',
     title: 'Microwave',
     serviceId: 'microwave-repair',
+    intro: "Microwave fault codes are less common than on other appliances since the electronics are simpler, but GE, Samsung, Whirlpool, and Maytag models will still flag a code for issues like a failed door interlock or a magnetron that's stopped drawing power.",
     brands: [
       {
         brand: 'GE',
