@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../../../layouts/Layout.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import ApplianceIcon from '../../../components/ApplianceIcon.astro';
@@ -12,6 +13,15 @@ export async function getStaticPaths() {
 }
 
 const { appliance } = Astro.props as { appliance: (typeof errorCodes)[number] };
+
+// Not every fault shows a code on the display — cross-link the symptom-led
+// /problems/ pages for the same appliance. Also fills out real, non-templated
+// content on the shorter category pages (microwave, refrigerator) that were
+// crawled but left unindexed per the 2026-08-25 GSC review despite the
+// per-appliance intro fix.
+const relatedProblems = (await getCollection('problems')).filter(
+  (p) => p.data.appliance.toLowerCase() === appliance.slug
+);
 
 const breadcrumbItems = [
   { name: 'Home', url: '/' },
@@ -60,6 +70,20 @@ const breadcrumbItems = [
         </div>
       </div>
     ))}
+
+    {relatedProblems.length > 0 && (
+      <div class="mt-12">
+        <h2 class="text-xl font-semibold text-slate-900 dark:text-white">Not seeing a code on the display?</h2>
+        <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Some {appliance.title.toLowerCase()} faults don't throw a code at all — here's what to check by symptom instead.</p>
+        <ul class="mt-4 space-y-2">
+          {relatedProblems.map((problem) => (
+            <li>
+              <a href={`/problems/${problem.id}/`} class="text-blue-700 hover:underline dark:text-blue-400">{problem.data.title}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
 
     <div class="mt-12 rounded-lg bg-slate-900 p-8 text-center">
       <h2 class="text-xl font-semibold text-white">{appliance.title} code you can't clear?</h2>
