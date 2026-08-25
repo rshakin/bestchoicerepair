@@ -399,6 +399,30 @@ export const errorCodes: ApplianceCodes[] = [
           },
         ],
       },
+      {
+        brand: 'Frigidaire',
+        brandSlug: 'frigidaire',
+        codes: [
+          {
+            code: 'SY EF',
+            meaning: 'Evaporator fan fault',
+            cause: 'Dead evaporator fan motor, a blade jammed by frost buildup, or a failed fan-driver circuit on the main board.',
+            diySteps: [
+              'Open the freezer and listen for the evaporator fan — if the fridge is silent inside, the fan has likely stopped.',
+              'If frost buildup is visible around the back panel, a 24-hour manual defrost can sometimes clear it; if the code returns, the fan motor needs replacing.',
+            ],
+          },
+          {
+            code: 'SY CE',
+            meaning: 'Communication error between the control board and display',
+            cause: 'Most often a door wire harness that has cracked at the hinge from years of opening and closing; less commonly a failed board.',
+            diySteps: [
+              'Slowly open and close the door while watching the display — if the error flickers in sync with the door, the hinge wiring is the culprit.',
+              'The fridge usually keeps cooling on its last setting even with this error, but don\'t leave it unresolved — call us to replace the harness or board.',
+            ],
+          },
+        ],
+      },
     ],
   },
   {
@@ -649,6 +673,30 @@ export const errorCodes: ApplianceCodes[] = [
             diySteps: [
               'Check for a stuck keypad button.',
               'Firmly close the door and check the door switch area for obstructions.',
+            ],
+          },
+        ],
+      },
+      {
+        brand: 'LG',
+        brandSlug: 'lg',
+        codes: [
+          {
+            code: 'F-3',
+            meaning: 'Stuck keypad button',
+            cause: "The membrane keypad has detected a button that isn't springing back up, often from trapped moisture or a worn membrane.",
+            diySteps: [
+              'Unplug the microwave for 5 minutes, then press each button to feel for one that stays down or feels different from the rest.',
+              'Wipe the keypad area dry and let it air out before plugging back in — if F-3 returns, the keypad assembly needs replacing.',
+            ],
+          },
+          {
+            code: 'PO',
+            meaning: 'Power interruption notice (not a fault)',
+            cause: 'The microwave lost and regained power — a brief outage, breaker trip, or loose outlet connection, not a broken part.',
+            diySteps: [
+              'Press Clear/Stop to dismiss it and confirm the microwave still runs a normal cycle.',
+              "Check that the cord is fully seated in the outlet — if PO keeps coming back with steady household power, the microwave's internal power supply likely needs testing.",
             ],
           },
         ],
