@@ -6,7 +6,7 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ApplianceIcon from '../../components/ApplianceIcon.astro';
 import BrandMark from '../../components/BrandMark.astro';
 import { site, brandSlug } from '../../lib/site';
-import { serviceSchema, breadcrumbSchema } from '../../lib/schema';
+import { serviceSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
 import { applianceColor, applianceImage } from '../../lib/icons';
 import { errorCodes } from '../../lib/errorCodes';
 
@@ -30,14 +30,36 @@ const breadcrumbItems = [
   { name: 'Services', url: '/services/' },
   { name: entry.data.title, url: `/services/${entry.id}/` },
 ];
+
+const tl = entry.data.title.toLowerCase();
+const faqs = [
+  {
+    question: `Do you offer same-day or emergency ${tl} in Las Vegas?`,
+    answer: `Yes. Same-day and next-day ${tl} appointments are available across Las Vegas, Henderson, Summerlin, and the rest of the valley, and we keep a line open 24 hours for the situations that can't wait.`,
+  },
+  {
+    question: `How much does ${tl} cost?`,
+    answer: `A ${site.serviceCallFee} diagnostic fee covers the visit and the diagnosis, and it's waived in full when you move forward with the repair. You approve the repair price before any work starts.`,
+  },
+  {
+    question: `Is your ${tl} work guaranteed?`,
+    answer: `Every repair is backed by our ${site.warranty.toLowerCase()}. If a part we installed fails within that window, we come back and make it right at no charge.`,
+  },
+  {
+    question: `Which brands do you repair?`,
+    answer: `We handle ${tl} for all major brands — ${site.brandsShort.slice(0, 10).join(', ')}, and more — from everyday models to premium built-in units.`,
+  },
+  ...entry.data.faqs,
+];
 ---
 
 <Layout
-  title={`${entry.data.title} in Las Vegas | ${site.name}`}
+  title={entry.data.seoTitle ?? `${entry.data.title} in Las Vegas | ${site.name}`}
   description={entry.data.metaDescription}
   schema={[
     serviceSchema({ name: entry.data.title, description: entry.data.metaDescription, url: pageUrl }),
     breadcrumbSchema(breadcrumbItems.map((i) => ({ ...i, url: new URL(i.url, Astro.site).toString() }))),
+    faqSchema(faqs),
   ]}
 >
   <Breadcrumbs items={breadcrumbItems} />
@@ -119,6 +141,18 @@ const breadcrumbItems = [
           <a href={`/services/${entry.id}/${location.id}/`} class="rounded-md border border-slate-200 px-3 py-1 text-sm text-slate-700 hover:border-blue-300 dark:border-slate-800 dark:text-slate-300 dark:hover:border-blue-700">
             {location.data.name}
           </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-10">
+      <h2 class="text-xl font-semibold text-slate-900 dark:text-white">Frequently asked questions</h2>
+      <div class="mt-4 space-y-4">
+        {faqs.map((item) => (
+          <div>
+            <h3 class="font-semibold text-slate-900 dark:text-white">{item.question}</h3>
+            <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">{item.answer}</p>
+          </div>
         ))}
       </div>
     </div>

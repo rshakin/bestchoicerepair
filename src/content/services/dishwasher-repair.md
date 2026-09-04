@@ -1,7 +1,7 @@
 ---
 title: Dishwasher Repair
 shortDescription: Dishwasher repair for drainage, cleaning, and leak issues.
-metaDescription: Dishwasher repair in Las Vegas & Henderson. Won't drain, leaking, not cleaning dishes. Same-day service, 90-day warranty. Call now.
+metaDescription: Same-day dishwasher repair in Las Vegas & Henderson — won't drain, leaking, not cleaning. Built-in, portable, and panel-ready. $89 fee waived with repair, 90-day warranty.
 icon: dishwasher
 order: 4
 commonIssues:
@@ -11,6 +11,13 @@ commonIssues:
   - Won't start or won't fill with water
   - Loud grinding or humming noise during cycles
   - Door latch or control panel not responding
+faqs:
+  - question: Do you offer same-day dishwasher repair?
+    answer: Yes — same-day and next-day across the valley. A dishwasher leaking onto the floor or into the cabinets qualifies for our 24-hour emergency line.
+  - question: Why won't my dishwasher get dishes clean anymore?
+    answer: In Las Vegas it's very often hard-water scale on the spray arms and heating element, along with a worn wash pump or a clogged filter. We clear the scale and replace what's needed so it actually cleans again.
+  - question: Do you work on portable and panel-ready dishwashers?
+    answer: Both. We service built-in, portable, and panel-ready models integrated into custom cabinetry, and know how to pull and reset a panel-ready unit without damaging the surrounding trim.
 relatedProblems: ['dishwasher-not-draining', 'dishwasher-not-cleaning-dishes', 'dishwasher-leaking', 'dishwasher-wont-start']
 ---
 

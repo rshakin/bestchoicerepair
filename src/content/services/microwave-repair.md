@@ -1,7 +1,8 @@
 ---
 title: Microwave Repair
+seoTitle: "Microwave & Microwave Oven Repair in Las Vegas | Best Choice Repair"
 shortDescription: Built-in and over-the-range microwave repair.
-metaDescription: Microwave repair in Las Vegas & Henderson. Not heating, turntable, sparking issues. Same-day service, 90-day warranty. Call now.
+metaDescription: Same-day microwave and microwave oven repair in Las Vegas & Henderson — not heating, sparking, dead keypad. Built-in, over-the-range, and drawer models. 90-day warranty.
 icon: microwave
 order: 6
 commonIssues:
@@ -11,6 +12,11 @@ commonIssues:
   - Buttons or keypad not responding
   - Microwave running but display is dark
   - Door won't latch or close properly
+faqs:
+  - question: Do you repair built-in and over-the-range microwaves, not just countertop?
+    answer: Yes — over-the-range, built-in wall-oven combos, and microwave drawers, as well as countertop units. Over-the-range models also share a vent hood, so we check the fan and damper on any airflow complaint.
+  - question: Is a microwave that sparks or won't heat worth repairing?
+    answer: Often, yes. A no-heat microwave is usually a failed magnetron, high-voltage diode, or door interlock switch; sparking is typically a burnt waveguide cover or a chipped cavity. These are stocked parts and a safe fixed-price repair — but never a DIY job, given the high-voltage capacitor inside.
 relatedProblems: ['microwave-not-heating', 'microwave-turntable-not-spinning', 'microwave-sparking', 'microwave-buttons-not-working']
 ---
 

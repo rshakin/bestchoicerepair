@@ -1,7 +1,7 @@
 ---
 title: Garbage Disposal Repair
 shortDescription: Garbage disposal repair, replacement, and jam clearing.
-metaDescription: Garbage disposal repair in Las Vegas & Henderson. Jammed, leaking, humming, or not turning on. Same-day service, 90-day warranty.
+metaDescription: Same-day garbage disposal repair and replacement in Las Vegas & Henderson — jammed, leaking, humming, or dead. Flat-rate on most units, 90-day warranty.
 icon: disposal
 order: 7
 commonIssues:
@@ -11,6 +11,11 @@ commonIssues:
   - Disposal won't turn on at all
   - Frequent breaker trips when running
   - Unusual grinding noise or vibration
+faqs:
+  - question: Do you replace garbage disposals, or only repair them?
+    answer: Both. A jam, a stuck impeller, or a tripped reset is a quick repair; a unit leaking from the body shell or with a seized motor is past repair, and we can swap in a new disposal the same visit.
+  - question: My disposal is leaking under the sink — where does that come from?
+    answer: Most often the sink flange at the top, the dishwasher-hose connection, or the discharge tube gasket — all replaceable. A leak from the bottom center of the unit means the internal seal has failed and the disposal needs replacing.
 relatedProblems: ['garbage-disposal-humming', 'garbage-disposal-leaking', 'garbage-disposal-wont-turn-on']
 ---
 

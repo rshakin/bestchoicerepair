@@ -1,7 +1,8 @@
 ---
 title: Oven & Range Repair
+seoTitle: "Oven, Range & Stove Repair in Las Vegas | Best Choice Repair"
 shortDescription: Gas, electric, and dual-fuel oven, stove, and range repair.
-metaDescription: Oven & range repair in Las Vegas & Henderson. Not heating, uneven baking, igniter issues. Same-day service, 90-day warranty. Call now.
+metaDescription: Same-day oven, range, stove, and cooktop repair in Las Vegas & Henderson — gas, electric, and dual-fuel. Not heating, igniter, uneven baking. 90-day warranty.
 icon: oven
 order: 5
 commonIssues:
@@ -11,6 +12,13 @@ commonIssues:
   - Self-clean cycle not working or locking the door
   - Control panel unresponsive or showing error codes
   - Broiler not working
+faqs:
+  - question: Do you repair cooktops and stoves, or only ovens?
+    answer: All of it — freestanding stoves and ranges, slide-in ranges, wall ovens, and separate cooktops, in gas, electric, and dual-fuel. "Stove repair," "range repair," and "oven repair" all land in the same place here.
+  - question: Do you service gas ranges safely?
+    answer: Yes. Our technicians follow proper procedure for testing igniters, safety valves, and gas lines, and won't leave a gas appliance in service unless it's safe.
+  - question: My electric oven won't reach temperature — what is that?
+    answer: A bake element that no longer glows evenly, a failed oven sensor reading the wrong temperature, or a relay on the control board. We test all three on-site and carry the common elements and sensors.
 relatedProblems: ['oven-not-heating', 'oven-uneven-baking', 'oven-burner-wont-light', 'oven-self-clean-not-working']
 ---
 

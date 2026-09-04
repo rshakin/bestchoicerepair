@@ -5,11 +5,24 @@ const services = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/services' }),
   schema: z.object({
     title: z.string(),
+    // Overrides the default `<title>` tag ("<title> in Las Vegas | <site>")
+    // when the appliance goes by more than one search term — e.g. washer /
+    // washing machine, oven / range / stove, refrigerator / freezer. GSC
+    // (2026-09-03) showed these pages drawing impressions on the synonym
+    // and the "top-rated / professional / emergency" modifier variants but
+    // never matching in the snippet, so CTR was flat zero. Does NOT change
+    // the H1, breadcrumb, or schema serviceType — only the title tag.
+    seoTitle: z.string().optional(),
     shortDescription: z.string(),
     metaDescription: z.string(),
     icon: z.string(),
     order: z.number(),
     commonIssues: z.array(z.string()),
+    // Service-specific Q&As appended after the shared set the template
+    // builds (same-day/emergency, pricing, warranty, brands). Use these for
+    // subtype and synonym coverage — top-load vs front-load, gas vs
+    // electric, "is washing machine repair the same thing".
+    faqs: z.array(z.object({ question: z.string(), answer: z.string() })).default([]),
     relatedProblems: z.array(reference('problems')).default([]),
   }),
 });
