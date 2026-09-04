@@ -22,4 +22,8 @@ relatedProblems: ['microwave-not-heating', 'microwave-turntable-not-spinning', '
 
 We repair built-in, over-the-range, and countertop microwaves from all major brands. No-heat complaints are commonly caused by a failed magnetron, high-voltage diode, or door interlock switch — components our technicians are equipped to test and replace safely on-site.
 
-Because microwaves involve high-voltage components, we recommend against DIY repair. Our technicians handle diagnosis and repair safely, backed by a 90-day parts and labor warranty, with the $89 service call fee waived when you repair with us.
+A [microwave that runs but doesn't heat](/problems/microwave-not-heating/) has almost always lost its magnetron, high-voltage diode, or capacitor, or one of the door interlock switches has failed and the unit only thinks the door is closed. These sit on a circuit that holds a lethal charge even unplugged, which is the main reason this isn't a DIY repair. Our technicians discharge and test it properly.
+
+[Sparking or arcing](/problems/microwave-sparking/) inside the cavity is usually a burnt waveguide cover or chipped paint exposing bare metal — a cheap fix, but keep the microwave off until it's done. A [turntable that won't turn](/problems/microwave-turntable-not-spinning/) is a worn drive motor or stripped coupler, and [dead or unresponsive buttons](/problems/microwave-buttons-not-working/) point to a failed membrane keypad or control board.
+
+Over-the-range models double as a vent hood, so we also check the fan, damper, and charcoal filter on any airflow or noise complaint. Digital models showing an [error code](/error-codes/microwave/) get read on-site. We service built-in, over-the-range, microwave-drawer, and countertop units, backed by a 90-day parts and labor warranty with the $89 service call fee waived when you repair with us.

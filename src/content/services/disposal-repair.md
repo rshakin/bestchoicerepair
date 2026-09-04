@@ -21,4 +21,8 @@ relatedProblems: ['garbage-disposal-humming', 'garbage-disposal-leaking', 'garba
 
 A humming disposal usually means a jam or a stuck impeller — often a quick fix. A disposal that won't turn on at all can point to a tripped reset button, bad switch, or failed motor. We diagnose the issue on-site and repair or replace the unit as needed.
 
-We also handle leaks at the sink flange or discharge pipe, which are common on older units. All work is backed by a 90-day warranty on parts and labor, with the $89 diagnostic fee waived when you proceed with the repair.
+A [disposal that hums but won't spin](/problems/garbage-disposal-humming/) has a jam — a bone, a fruit pit, or a piece of flatware wedged between the impeller and the grind ring. Freeing it takes a few minutes if the motor is still good; if it's been left humming and tripping for weeks, the motor windings may already be cooked, and a replacement is the better call. We'll tell you honestly which.
+
+A [disposal that's completely dead](/problems/garbage-disposal-wont-turn-on/) is usually a tripped reset button on the bottom of the unit, a failed wall switch, or a bad outlet — not always the disposal itself, which is worth checking before replacing anything. [Leaks](/problems/garbage-disposal-leaking/) come from three places: the sink flange up top, the dishwasher-hose connection on the side, or the discharge-tube gasket. All three are repairable. A leak from the bottom center of the housing means the internal seals have failed and the unit is done.
+
+Most Las Vegas homes run a standard 1/3 to 3/4 HP continuous-feed disposal, and we stock replacements on the truck for a same-visit swap when repair doesn't make sense. Every repair and replacement is backed by our 90-day warranty on parts and labor, with the $89 diagnostic fee waived when you proceed with the repair.
