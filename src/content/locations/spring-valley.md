@@ -1,6 +1,6 @@
 ---
 name: Spring Valley
-metaDescription: Appliance repair in Spring Valley, NV. Washers, dryers, refrigerators, ovens & more. Same-day service, 90-day warranty.
+metaDescription: Same-day appliance repair in Spring Valley, NV — washers, dryers, refrigerators, dishwashers & ovens. $89 service call waived with repair, 90-day warranty.
 order: 7
 zipCodes: ['89102', '89103', '89113', '89118', '89147', '89148', '89178']
 neighborhoods: ['Rainbow Corridor', 'Decatur Corridor']
@@ -16,6 +16,12 @@ serviceNotes:
   disposal-repair: "Disposal units in Spring Valley's condo and apartment complexes often share plumbing with neighboring units, which our technicians check first on any leak call."
 ---
 
-Spring Valley, west of the I-15 between Flamingo and Blue Diamond, is one of the valley's most densely built residential areas — a mix of apartment and condo complexes along Rainbow and Decatur alongside single-family neighborhoods further south. Our technicians are used to working in both multi-unit buildings and standalone homes throughout the area.
+Spring Valley, west of I-15 between Flamingo and Blue Diamond, is one of the valley's most densely built residential areas — apartment and condo complexes lining the Rainbow and Decatur corridors, with single-family neighborhoods spreading south toward Blue Diamond. Our technicians work in both settings every day, from tight second-floor utility closets to full-size garage laundry rooms.
 
-We handle same-day and next-day appointments across Spring Valley, including stacked laundry units common in the area's condo and townhome complexes.
+Stacked washer and dryer units are the norm in Spring Valley's condo and townhome communities, and they fail differently than standalone machines. A stacked dryer with a blocked vent has nowhere to shed heat, so we check the vent run first on any no-heat or long-dry-time call. In the area's single-family homes we see more standard side-by-side laundry setups, gas dryers included.
+
+Las Vegas has some of the hardest tap water in the country, and Spring Valley is no exception. Scale builds up in dishwasher spray arms and heating elements, washing machine inlet valves, and refrigerator water lines and ice makers. A dishwasher that stopped draining or an ice maker that slowed to a trickle is very often a hard-water problem, and we carry the parts to fix it on the first visit.
+
+Summer heat is the other big factor. Plenty of Spring Valley homes keep a second refrigerator or a chest freezer in the garage, where temperatures climb past 115°F in July and August. That forces the compressor to run almost non-stop, and garage units tend to fail years earlier than the one in the kitchen. If your garage fridge stopped cooling during a heat wave, it's worth calling before the food loss adds up.
+
+We handle same-day and next-day appointments across every Spring Valley ZIP code, and dispatch is based in the valley, so you're not waiting on a technician driving in from out of town.

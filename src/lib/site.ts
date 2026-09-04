@@ -8,6 +8,13 @@ export function brandSlug(name: string): string {
 
 export const site = {
   name: 'Best Choice Repair',
+  // Exact phrasings real customers and directories use for this business —
+  // feeds the LocalBusiness schema's `alternateName` so Google ties the
+  // "appliance repair" wording to the same entity (we rank ~pos 8 for our
+  // own brand term "best choice appliance repair" as of the 2026-09-03 GSC
+  // review, with a similarly named competitor bleeding into the SERP).
+  alternateNames: ['Best Choice Appliance Repair', 'Best Choice Appliance Repair Las Vegas'],
+  url: 'https://www.bestchoicerepair.com',
   tagline: 'More care + Less cost = Customer satisfaction!',
   // Primary number everywhere it's displayed — matches the Google Business
   // Profile listing, which is what local-pack/NAP consistency is judged

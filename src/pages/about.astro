@@ -29,7 +29,7 @@ const steps = [
 
 <Layout
   title={`About Us | ${site.name}`}
-  description="Family-owned appliance repair company serving the Las Vegas valley. Licensed & insured, 90-day warranty on parts and labor."
+  description="Best Choice Repair, also known as Best Choice Appliance Repair, is a family-owned appliance repair company serving the Las Vegas valley. Licensed & insured, 90-day warranty."
   schema={breadcrumbSchema(breadcrumbItems.map((i) => ({ ...i, url: new URL(i.url, Astro.site).toString() })))}
 >
   <Breadcrumbs items={breadcrumbItems} />
@@ -41,7 +41,8 @@ const steps = [
       <p>
         {site.name} is a family-owned appliance repair company serving the Las Vegas valley. Our approach is
         simple: {site.tagline.toLowerCase()} We show up on time, diagnose the actual problem before recommending
-        a repair, and stand behind our work with a {site.warranty.toLowerCase()}.
+        a repair, and stand behind our work with a {site.warranty.toLowerCase()}. You'll also see us listed
+        around town as Best Choice Appliance Repair — same company, same technicians.
       </p>
       <p>
         We repair washers, dryers, refrigerators, dishwashers, ovens, ranges, microwaves, and garbage disposals

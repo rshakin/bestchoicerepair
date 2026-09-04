@@ -25,6 +25,8 @@ export function localBusinessSchema() {
     '@context': 'https://schema.org',
     '@type': 'HomeAndConstructionBusiness',
     name: site.name,
+    alternateName: site.alternateNames,
+    url: site.url,
     description:
       'Appliance repair serving the Las Vegas metro area: washers, dryers, refrigerators, dishwashers, ovens, ranges, microwaves, and garbage disposals.',
     telephone: site.phoneHref.replace('tel:', ''),

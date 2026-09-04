@@ -1,6 +1,6 @@
 ---
 name: North Las Vegas
-metaDescription: Appliance repair in North Las Vegas, NV. Washers, dryers, refrigerators, ovens & more. Same-day service, 90-day warranty.
+metaDescription: Same-day appliance repair in North Las Vegas, NV — Aliante, Eldorado & the Cheyenne corridor. Washers, dryers, refrigerators & ovens. $89 service call, 90-day warranty.
 order: 4
 zipCodes: ['89030', '89031', '89032', '89081', '89084', '89085', '89086']
 neighborhoods: ['Aliante', 'Eldorado', 'Cheyenne Corridor']
@@ -16,6 +16,12 @@ serviceNotes:
   disposal-repair: "Disposal repairs in North Las Vegas are a mix of newer units still under warranty-adjacent age and older ones in established homes finally due for a jam or leak repair."
 ---
 
-North Las Vegas has grown quickly, with newer master-planned communities like Aliante and Eldorado joining longer-established neighborhoods near Cheyenne and Las Vegas Boulevard North. We see a mix of newer appliance installs from recent home builds alongside repair calls for older units still running strong in established homes.
+North Las Vegas has grown faster than almost anywhere else in the valley. Master-planned communities like Aliante and Eldorado brought thousands of newer homes — and with them, newer appliances: digital control boards, error-code diagnostics, panel-ready refrigerators, and dryers with moisture sensors. Closer to the Cheyenne corridor and Las Vegas Boulevard North, the housing stock is older, and so are the machines, which means more compressor work, more igniter and thermal-fuse replacements, and more repairs on units that have simply run a long time.
 
-Our technicians cover all of North Las Vegas, with same-day service available for common issues like refrigerators not cooling and washers that won't drain.
+That split shapes how we show up. For a newer home we bring diagnostic tools that read fault codes off the control board; for an older one we bring the mechanical parts that wear out first. Either way, the goal is the same — find the actual problem before quoting a repair.
+
+Hard water affects every North Las Vegas neighborhood. The Las Vegas Valley has among the hardest tap water in the country, and the scale it leaves behind is a leading cause of dishwasher, washing machine, and ice-maker failures here. If your dishwasher isn't cleaning well anymore or your refrigerator's water dispenser has slowed down, mineral buildup is usually the first thing we check.
+
+Garage appliances take a beating in the North Las Vegas heat. Second refrigerators and freezers kept in the garage run against 115°F-plus summer temperatures, and their compressors wear out well ahead of schedule. A garage unit that stops cooling in July is one of the most common calls we get, and it's worth handling quickly before it turns into spoiled food.
+
+Our technicians cover all of North Las Vegas — Aliante, Eldorado, the Cheyenne corridor, and everything in between — with same-day service available for the urgent things, like a refrigerator that won't cool or a washer that won't drain.
