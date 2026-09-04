@@ -1,6 +1,6 @@
 ---
 name: Las Vegas
-metaDescription: Appliance repair in Las Vegas, NV. Washers, dryers, refrigerators, ovens & more. Same-day service, 90-day warranty. Call now.
+metaDescription: Same-day appliance repair in Las Vegas, NV — Downtown to the 215. Washers, dryers, refrigerators, dishwashers & ovens. $89 service call, 90-day warranty.
 order: 1
 zipCodes: ['89101', '89102', '89104', '89106', '89107', '89108', '89109', '89117', '89118', '89119', '89120', '89121', '89128', '89129', '89130', '89131', '89144', '89145', '89146', '89147', '89149']
 neighborhoods: ['Downtown', 'Arts District']
@@ -16,6 +16,10 @@ serviceNotes:
   disposal-repair: "Older Las Vegas homes near Downtown are the most common source of our disposal leak calls, where flange seals and discharge pipes tend to wear out first."
 ---
 
-From the historic Downtown core to the residential neighborhoods spreading toward the 215 Beltway, we handle appliance repair calls across Las Vegas every day. Older homes near Downtown and the Arts District often have full-size laundry setups with aging washers and dryers, while newer builds further out tend to bring in more digital, feature-heavy refrigerators and ranges — our technicians carry parts and diagnostic tools for both.
+From the historic Downtown core to the neighborhoods spreading toward the 215 Beltway, we handle appliance repair across Las Vegas every day. Older homes near Downtown and the Arts District often run full-size laundry setups with aging washers and dryers and basic builder dishwashers well past their expected life, while newer builds further out bring digital control panels and error-code diagnostics — our technicians carry parts and tools for both.
 
-Same-day appointments are available across Las Vegas ZIP codes, and our dispatch is based locally, so you're not waiting on a technician driving in from across the valley.
+Las Vegas has some of the hardest tap water in the country, and the older housing near the center of town rarely has a softener to blunt it. Appliances there take the scale undiluted: dishwasher heating elements crust over, washer inlet valves stick, and refrigerator ice makers slow to a trickle. It's the single most common thread running through the repairs we do inside the city.
+
+The core also still has plenty of original gas service, so we do more gas dryer and gas range work near Downtown — thermal fuses, igniters, safety valves — than out in the newer electric subdivisions. And the classic summer call holds citywide: a second refrigerator or freezer in an uninsulated garage, compressor running non-stop against 115°F, giving out in July.
+
+Same-day appointments are available across Las Vegas ZIP codes, and our dispatch is based locally — you're not waiting on a technician driving in from another city.

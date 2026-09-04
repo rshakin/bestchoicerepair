@@ -1,6 +1,6 @@
 ---
 name: Henderson
-metaDescription: Appliance repair in Henderson, NV. Washers, dryers, refrigerators, ovens & more. Same-day service, 90-day warranty. Call now.
+metaDescription: Same-day appliance repair in Henderson, NV — Anthem, Seven Hills & Water Street. Standard and built-in washers, dryers, refrigerators & ranges. 90-day warranty.
 order: 2
 zipCodes: ['89002', '89011', '89012', '89014', '89015', '89044', '89052', '89074']
 neighborhoods: ['Anthem', 'Seven Hills', 'MacDonald Highlands', 'Water Street District']
@@ -16,6 +16,10 @@ serviceNotes:
   disposal-repair: "Henderson's newer homes tend to run higher-horsepower disposal units, which we service alongside the standard models still common in its older neighborhoods."
 ---
 
-Henderson's master-planned communities — from Anthem and Seven Hills to MacDonald Highlands — tend to have newer, higher-end appliance packages, including built-in refrigeration and premium ranges from brands like Bosch, Wolf, and Thermador. We regularly service these installs alongside standard washer, dryer, and dishwasher repairs in Henderson's older neighborhoods closer to Water Street.
+Henderson's master-planned communities — Anthem, Seven Hills, MacDonald Highlands — tend toward newer, higher-end appliance packages, including built-in refrigeration and professional-style ranges from Bosch, Wolf, and Thermador. We service those installs alongside standard washer, dryer, and dishwasher repairs in the older neighborhoods closer to Water Street, so a Henderson call can be anything from a $12 door switch to a sealed-system repair on a built-in column.
 
-Henderson is one of our most-requested service areas, and we keep appointment slots open throughout the week for same-day and next-day calls.
+Las Vegas hard water runs through all of it. Many of the higher-end Henderson homes have a whole-home softener that takes the edge off, but softeners get neglected — out of salt, resin worn out — and the homes near Water Street mostly never had one. Scaled-up dishwasher spray arms, stiff washer valves, and slow refrigerator water dispensers are routine here either way.
+
+Anthem and MacDonald Highlands sit a few hundred feet above the valley floor, a little cooler but more exposed to wind-driven dust that loads condenser coils and dryer vents. Lower down, garage refrigerators and freezers face the same 115°F-plus summer heat as the rest of the valley and wear out ahead of schedule. Both are worth a preventive look before peak summer.
+
+Henderson is one of our most-requested service areas, and we keep same-day and next-day slots open through the week. For the premium built-ins common in the newer communities, we confirm parts availability up front so you're not left guessing on timeline.

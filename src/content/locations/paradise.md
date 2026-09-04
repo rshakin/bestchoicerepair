@@ -16,6 +16,10 @@ serviceNotes:
   disposal-repair: "Disposal units in Paradise's high-rise and condo buildings often share plumbing risers with neighboring units, which our technicians know to check first on a leak or backup call."
 ---
 
-Paradise — the unincorporated area that includes the Las Vegas Strip corridor and neighborhoods like the University District and the area around UNLV — has a high concentration of condos, apartments, and high-rise units. That means tighter spaces, stacked washer/dryer units, and building-specific access requirements, all of which our technicians are used to working around.
+Paradise — the unincorporated area covering the Strip corridor, the University District, and the neighborhoods around UNLV — is dense with condos, apartments, and high-rise units. That means compact and stacked laundry, counter-depth and built-in refrigeration, ventless dryers, and building-specific access, all of which our technicians work around routinely.
 
-We service both residential complexes and standalone homes throughout Paradise, with flexible scheduling for properties that require building or HOA coordination.
+The city's hard water is as much a factor here as anywhere. Compact dishwashers and in-door ice makers have less margin to begin with, so scale on a spray arm or a fill valve shows up as a performance problem sooner. Some high-rise buildings run their own water treatment; most individually owned condos do not, and those are the units where a two-year-old dishwasher already leaves film on the glasses.
+
+Ventless and condenser dryers are common in Paradise's high-rises because there's no exterior wall to vent through. They dry more slowly by design, and in a tight interior closet with no airflow they run hot — lint on the condenser and a blocked intake are the first things we check on a no-heat or won't-dry call. West-facing units near the Strip also push their refrigerators and any balcony freezer hard through the afternoon.
+
+We service both residential complexes and standalone homes throughout Paradise, and we handle the building side — service-elevator reservations, callbox and garage access, certificate-of-insurance requests — so book with your building's access details and we'll take it from there.
